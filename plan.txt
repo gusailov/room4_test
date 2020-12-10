@@ -1,0 +1,16 @@
+npx create-react-app my-app
+npm install axios --save
+npm install redux --save
+npm install react-redux --save
+npm install redux-thunk --save
+npm install react-router-dom  --save
+npm install @material-ui/core --save
+npm install @material-ui/icons --save
+
+create api.js
+- main_page_request
+-- http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=YOUR_API_KEY&format=json&page=1
+- artist_page_request
+--http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist_name}&api_key=YOUR_API_KEY&format=json
+- search_page_request
+-- http://ws.audioscrobbler.com/2.0/?method=track.search&track=${track}&api_key=YOUR_API_KEY&format=json

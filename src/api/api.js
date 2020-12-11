@@ -12,3 +12,10 @@ export const mainPageAPI = {
     return instance.get(`?method=chart.gettoptracks&format=json&page=1`);
   },
 };
+export const artistPageAPI = {
+  getartistinfo(artist_name) {
+    return instance.get(
+      `?method=artist.getinfo&artist=${artist_name}&format=json`
+    );
+  },
+};

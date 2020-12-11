@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { Grid, Typography } from '@material-ui/core';
 import { getTopTracks } from "../redux/main_page-reduser";
+import { getArtistInfo } from "../redux/artist_page-reduser";
 import MainPageListItem from './MainPageListItem';
 
 
@@ -11,7 +12,7 @@ function MainPageContainer(props) {
     }, []);
 
     const tracks = props.mainPage.tracks;
-    console.log("tracks", tracks);
+    //console.log("tracks", props);
 
     return (
         <div>
@@ -25,7 +26,7 @@ function MainPageContainer(props) {
 
                     tracks.map((track) =>
                         <Grid key={track.url} item xs={6} sm={4} md={2}>
-                            < MainPageListItem name={track.name} artist_name={track.artist.name} artist_url={track.artist.url} img={track.image[1]} />
+                            < MainPageListItem getArtistInfo={props.getArtistInfo} name={track.name} artist_name={track.artist.name} artist_url={track.artist.url} img={track.image[1]} />
                         </Grid>)
 
                 }
@@ -38,4 +39,4 @@ const mapStateToProps = (state) => {
         mainPage: state.mainPage,
     };
 };
-export default connect(mapStateToProps, { getTopTracks })(MainPageContainer)
+export default connect(mapStateToProps, { getTopTracks, getArtistInfo })(MainPageContainer)

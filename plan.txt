@@ -19,3 +19,6 @@ create store.js
 create main_page-reduser.js
 create MainPageContainer.jsx
 create MainPageListItem.jsx
+add Routes to App.jsx
+
+create artist_page-reduser.js

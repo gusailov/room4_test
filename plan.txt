@@ -14,3 +14,8 @@ create api.js
 --http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist_name}&api_key=YOUR_API_KEY&format=json
 - search_page_request
 -- http://ws.audioscrobbler.com/2.0/?method=track.search&track=${track}&api_key=YOUR_API_KEY&format=json
+
+create store.js
+create main_page-reduser.js
+create MainPageContainer.jsx
+create MainPageListItem.jsx

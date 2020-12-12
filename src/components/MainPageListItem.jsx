@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, IconButton, CardContent, CardMedia, Typography, Button } from '@material-ui/core';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Album from '@material-ui/icons/Album';
 
 const useStyles = makeStyles({
     root: {
@@ -35,7 +35,7 @@ function MainPageListItem(props) {
                 </Button>
                 <Typography variant="body2" color="textSecondary" component="p">
                     <IconButton href={props.artist_url} >
-                        <PhotoCamera />
+                        <Album />
                     </IconButton>
                 </Typography>
 

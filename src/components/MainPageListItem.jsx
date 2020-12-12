@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 
 export default function MainPageListItem(props) {
     const classes = useStyles();
-
+    const artistName = props.artist_name
     return (
         <Card className={classes.root}>
             <CardActionArea>
@@ -33,8 +33,8 @@ export default function MainPageListItem(props) {
                     <Typography variant="body2" color="textSecondary" component="p">
                         <NavLink
                             to={{
-                                pathname: `/artist/${props.artist_name}`,
-                                state: { location: props.artist_name }
+                                pathname: `/artist/${artistName}`,
+                                state: { artistName }
 
 
                             }}>

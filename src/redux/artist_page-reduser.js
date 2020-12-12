@@ -4,7 +4,6 @@ const SET_ARTIST = "SET_ARTIST";
 
 const initialState = {
   artist: [],
-  location: "",
 };
 
 const artistPageReducer = (state = initialState, action) => {
@@ -18,10 +17,9 @@ const artistPageReducer = (state = initialState, action) => {
 };
 export const setArtistInfo = (artist) => ({ type: SET_ARTIST, artist });
 
-export const getArtistInfo = (artist_name = "abba") => {
+export const getArtistInfo = (artist_name) => {
   return (dispatch) => {
     artistPageAPI.getartistinfo(artist_name).then((data) => {
-      console.log("setArtistInfo(data)", data.data.artist);
       dispatch(setArtistInfo(data.data.artist));
     });
   };

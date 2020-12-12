@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
-import { useLocation, useParams, useRouteMatch } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function ArtistPage(props) {
+function SearchPage(props) {
     const location = useLocation();
     const artistName = location.state.artistName;
 
@@ -21,7 +21,7 @@ function ArtistPage(props) {
             <NavLink to={'/ '}>
                 HOME
             </NavLink>
-            <div>artistPage</div>
+            <div>SearchResult</div>
 
 
         </div>
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => {
         artist: state.artistPage,
     };
 };
-export default connect(mapStateToProps, { getArtistInfo })(ArtistPage)
+export default connect(mapStateToProps, { getArtistInfo })(SearchPage)

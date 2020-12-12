@@ -22,3 +22,8 @@ create MainPageListItem.jsx
 add Routes to App.jsx
 
 create artist_page-reduser.js
+create ArtistPage.jsx
+
+create SearchPage.jsx
+create SearchResultPage.jsx
+create search_page-reduser.js

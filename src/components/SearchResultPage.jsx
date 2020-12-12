@@ -4,18 +4,9 @@ import { NavLink } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
 import { useLocation } from "react-router-dom";
 
-function SearchPage(props) {
-    const location = useLocation();
-    const artistName = location.state.artistName;
+function SearchResultPage(props) {
 
-    useEffect(() => {
-        if (artistName) {
-
-            props.getArtistInfo(artistName);
-        }
-
-    }, [artistName]);
-
+    console.log('SearchResultPage', props);
     return (
         <div>
             <NavLink to={'/ '}>
@@ -29,7 +20,7 @@ function SearchPage(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        artist: state.artistPage,
+        search: state.searchPage,
     };
 };
-export default connect(mapStateToProps, { getArtistInfo })(SearchPage)
+export default connect(mapStateToProps)(SearchResultPage)

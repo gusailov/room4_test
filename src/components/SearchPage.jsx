@@ -1,24 +1,64 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { getArtistInfo } from "../redux/artist_page-reduser";
-import { useLocation } from "react-router-dom";
+import { getSearchResult } from "../redux/search_page-reduser";
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import { useHistory } from "react-router-dom";
+import SearchResultPage from './SearchResultPage';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        padding: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: 400,
+    },
+    input: {
+        marginLeft: theme.spacing(1),
+        flex: 1,
+    },
+    iconButton: {
+        padding: 10,
+    },
+    divider: {
+        height: 28,
+        margin: 4,
+    },
+}));
 function SearchPage(props) {
+    let history = useHistory();
+    console.log('SearchPage(props)', props);
+    const classes = useStyles();
+    const handleSubmit = (e) => {
+        history.push("/search");
+        e.preventDefault()
+        console.log('handleSubmit', e.target[0].value);
+        props.getSearchResult(e.target[0].value)
 
 
+    }
     return (
-        <div>
+        <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
 
-            <div>Search</div>
+            <InputBase
+                className={classes.input}
+                placeholder="Search Track"
+
+            />
+            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                <SearchIcon />
+            </IconButton>
 
 
-        </div>
+        </Paper>
     )
 }
 const mapStateToProps = (state) => {
     return {
-        artist: state.artistPage,
+        search: state.searchPage,
     };
 };
-export default connect(mapStateToProps, { getArtistInfo })(SearchPage)
+export default connect(mapStateToProps, { getSearchResult })(SearchPage)

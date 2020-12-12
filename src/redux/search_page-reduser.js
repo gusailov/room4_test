@@ -20,8 +20,8 @@ export const setResult = (result) => ({ type: SEARCH_TRACKS, result });
 export const getSearchResult = (track) => {
   return (dispatch) => {
     searchPageAPI.searchtrack(track).then((data) => {
-      console.log(data);
-      dispatch(setResult(data));
+      console.log("searchPageAPI", data.data.results.trackmatches.track);
+      dispatch(setResult(data.data.results.trackmatches.track));
     });
   };
 };

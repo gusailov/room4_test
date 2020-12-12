@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
-import { useLocation, useParams, useRouteMatch } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function ArtistPage(props) {
     const location = useLocation();

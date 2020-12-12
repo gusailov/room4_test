@@ -1,20 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
-import { useLocation } from "react-router-dom";
+
 
 function ArtistPage(props) {
-    const location = useLocation();
-    const artistName = location.state.artistName;
 
-    useEffect(() => {
-        if (artistName) {
+    console.log('ArtistPage', props);
 
-            props.getArtistInfo(artistName);
-        }
-
-    }, [artistName]);
 
     return (
         <div>

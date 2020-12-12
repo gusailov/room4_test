@@ -7,7 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from "react-router-dom";
-import SearchResultPage from './SearchResultPage';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,10 +29,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 function SearchPage(props) {
-    let history = useHistory();
+
     console.log('SearchPage(props)', props);
     const classes = useStyles();
+    let history = useHistory();
     const handleSubmit = (e) => {
+
         history.push("/search");
         e.preventDefault()
         console.log('handleSubmit', e.target[0].value);

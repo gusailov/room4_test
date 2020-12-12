@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getArtistInfo } from "../redux/artist_page-reduser";
-import { useLocation } from "react-router-dom";
+
+
 
 function SearchResultPage(props) {
 

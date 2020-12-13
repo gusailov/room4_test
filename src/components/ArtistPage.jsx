@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
@@ -13,10 +13,6 @@ function ArtistPage(props) {
     }, [])
 
     console.log('ArtistPage props', props);
-
-
-
-
     return (
         <div>
 

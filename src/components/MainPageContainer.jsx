@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { getTopTracks } from "../redux/main_page-reduser";
 import { getArtistInfo } from "../redux/artist_page-reduser";
 import MainPageListItem from './MainPageListItem';
-import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {

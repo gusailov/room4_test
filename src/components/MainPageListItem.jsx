@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Typography, Button, Divider, ListItemText, Avatar, ListItemAvatar, ListItem } from '@material-ui/core';
+import { IconButton, Typography, Divider, ListItemText, Avatar, ListItemAvatar, ListItem } from '@material-ui/core';
 import Album from '@material-ui/icons/Album';
 import { NavLink } from "react-router-dom";
 

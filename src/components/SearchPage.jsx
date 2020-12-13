@@ -42,7 +42,8 @@ function SearchPage(props) {
         if (!value) {
             return
         }
-        history.push("/search");
+        history.push(`/search/${value}`);
+
         props.getSearchResult(value)
         setValue(" ");
 

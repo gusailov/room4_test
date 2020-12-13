@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
 
 
 function ArtistPage(props) {
     const location = useLocation()
-
+    const params = useParams()
+    console.log('ArtistPage Params', params);
     useEffect(() => {
         props.getArtistInfo(location.state.artistName)
 

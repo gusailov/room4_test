@@ -9,8 +9,8 @@ const instance = axios.create({
 });
 
 export const mainPageAPI = {
-  gettoptracks() {
-    return instance.get(`?method=chart.gettoptracks&page=1`);
+  gettoptracks(page) {
+    return instance.get(`?method=chart.gettoptracks&page=${page}`);
   },
 };
 export const artistPageAPI = {

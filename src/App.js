@@ -4,7 +4,7 @@ import "./App.css";
 import ArtistPage from "./components/ArtistPage";
 import MainPageContainer from "./components/MainPageContainer";
 import SearchPage from "./components/SearchPage";
-import SearchResultPage from "./components/SearchResultPage";
+import SearchResultPageContainer from "./components/SearchResultPageContainer";
 
 function App(props) {
   return (
@@ -16,7 +16,7 @@ function App(props) {
             <ArtistPage />
           </Route>
           <Route path="/search/:value">
-            <SearchResultPage />
+            <SearchResultPageContainer />
           </Route>
           <Route path="/">
             <MainPageContainer />

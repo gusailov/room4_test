@@ -4,29 +4,28 @@ import Album from '@material-ui/icons/Album';
 import { NavLink } from "react-router-dom";
 
 
-function MainPageListItem(props) {
+function SearchResultItem(props) {
 
-    const artistName = props.artist_name
+
 
     return (
         <div>
 
             <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                    <Avatar alt={`${artistName} - ${props.name}`} src={props.img['#text']} title={`${artistName} - ${props.name}`} />
-                </ListItemAvatar>
                 <ListItemText primary={
                     <Typography color="textPrimary"  >
-                        {props.name}
+                        track: {props.track}
                     </Typography>
                 }
                     secondary={
-                        <NavLink to={{ pathname: `/artist/${artistName}`, state: { artistName } }}>
-                            {artistName}
-                        </NavLink>
+                        <Typography color="textSecondary" component={'p'}>
+                            artist: {props.artist}
+                        </Typography>
                     }
                 />
-                <IconButton href={props.artist_url} >
+
+
+                <IconButton href={props.url} >
                     <Album />
                 </IconButton>
             </ListItem>
@@ -36,4 +35,4 @@ function MainPageListItem(props) {
     );
 }
 
-export default MainPageListItem;
+export default SearchResultItem;

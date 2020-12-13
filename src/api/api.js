@@ -19,7 +19,7 @@ export const artistPageAPI = {
   },
 };
 export const searchPageAPI = {
-  searchtrack(track) {
-    return instance.get(`?method=track.search&track=${track}`);
+  searchtrack(track, page) {
+    return instance.get(`?method=track.search&track=${track}&page=${page}`);
   },
 };

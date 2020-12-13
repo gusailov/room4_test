@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { getSearchResult } from "../redux/search_page-reduser";
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,7 +6,9 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import { useHistory } from "react-router-dom";
+import Home from '@material-ui/icons/Home';
+import { NavLink, useHistory } from "react-router-dom";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,26 +31,34 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 function SearchPage(props) {
-
+    const [value, setValue] = useState("");
+    const handleChange = ({ target }) => setValue(target.value);
     console.log('SearchPage(props)', props);
     const classes = useStyles();
     let history = useHistory();
+
     const handleSubmit = (e) => {
-
-        history.push("/search");
         e.preventDefault()
-        console.log('handleSubmit', e.target[0].value);
-        props.getSearchResult(e.target[0].value)
-
+        if (!value) {
+            return
+        }
+        history.push("/search");
+        props.getSearchResult(value)
+        setValue(" ");
 
     }
     return (
         <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
-
+            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                <NavLink to={'/ '}>
+                    <Home />
+                </NavLink>
+            </IconButton>
             <InputBase
                 className={classes.input}
                 placeholder="Search Track"
-
+                onChange={handleChange}
+                value={value}
             />
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon />

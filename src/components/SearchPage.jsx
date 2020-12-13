@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 function SearchPage(props) {
     const [value, setValue] = useState("");
     const handleChange = ({ target }) => setValue(target.value);
-    console.log('SearchPage(props)', props);
+
     const classes = useStyles();
     let history = useHistory();
 
@@ -44,7 +44,7 @@ function SearchPage(props) {
         }
         history.push(`/search/${value}`);
         props.getSearchResult(value)
-        setValue(" ");
+        // setValue(" ");
 
     }
     return (

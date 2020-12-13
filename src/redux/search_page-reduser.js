@@ -28,7 +28,6 @@ export const getSearchResult = (track, page) => {
         data.data.results["opensearch:totalResults"] /
           data.data.results["opensearch:itemsPerPage"]
       );
-      console.log("getSearchResult", data);
       dispatch(setResult(data.data.results.trackmatches.track));
       dispatch(setPages(Math.floor(pages) + 1));
     });

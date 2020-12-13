@@ -24,7 +24,6 @@ export const setPages = (pages) => ({ type: SET_PAGES, pages });
 export const getTopTracks = (page) => {
   return (dispatch) => {
     mainPageAPI.gettoptracks(page).then((data) => {
-      console.log("getTopTracks", data.data.tracks["@attr"].totalPages);
       dispatch(setTracks(data.data.tracks.track));
       dispatch(setPages(data.data.tracks["@attr"].totalPages));
     });

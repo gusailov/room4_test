@@ -10,20 +10,17 @@ import Pagination from '@material-ui/lab/Pagination';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-
         backgroundColor: theme.palette.background.paper,
     },
 
 }));
-function MainPageContainer(props) {
-    console.log('MainPageContainer props', props);
-    const [page, setPage] = React.useState(1);
 
+function MainPageContainer(props) {
+    const [page, setPage] = React.useState(1);
     useEffect(() => {
         props.getTopTracks(page);
     }, [page]);
     const classes = useStyles();
-
     const tracks = props.mainPage.tracks;
     const pages = Number(props.mainPage.pages)
     const handleChange = (event, value) => {
@@ -32,7 +29,6 @@ function MainPageContainer(props) {
 
     return (
         <div>
-
             <Typography gutterBottom variant="h5" component="h2">
                 Best Tracks
             </Typography>
@@ -42,12 +38,9 @@ function MainPageContainer(props) {
                     {!tracks.length ?
                         <div>Loading...</div>
                         :
-
                         tracks.map((track) =>
-
                             < MainPageListItem key={track.url} name={track.name} artist_name={track.artist.name} artist_url={track.artist.url} img={track.image[1]} />
                         )
-
                     }
                 </List>
             </Grid>

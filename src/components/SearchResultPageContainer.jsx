@@ -15,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
+
 function SearchResultPageContainer(props) {
-    console.log('SearchResultPageContainer', props);
+
     const params = useParams()
     const classes = useStyles();
     const [page, setPage] = React.useState(1);
@@ -28,7 +29,6 @@ function SearchResultPageContainer(props) {
         props.getSearchResult(params.value, page)
 
     }, [page])
-
     const result = props.search.result;
 
     return (
@@ -47,7 +47,6 @@ function SearchResultPageContainer(props) {
                         result.map((res) =>
                             < SearchResultItem key={res.url} url={res.url} track={res.name} artist={res.artist} />
                         )
-
                     }
                 </List>
             </Grid>

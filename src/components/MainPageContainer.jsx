@@ -28,12 +28,15 @@ function MainPageContainer(props) {
     };
 
     return (
-        <div>
-            <Typography gutterBottom variant="h5" component="h2">
-                Best Tracks
+
+        <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+            <Grid item>
+                <Typography gutterBottom variant="h5" component="h2">
+                    Best Tracks
             </Typography>
-            <Pagination count={pages} page={page} onChange={handleChange} />
-            <Grid container spacing={1} justify={'space-evenly'}>
+                <Pagination count={pages} page={page} onChange={handleChange} />
+            </Grid>
+            <Grid item>
                 <List className={classes.root}>
                     {!tracks.length ?
                         <div>Loading...</div>
@@ -44,7 +47,8 @@ function MainPageContainer(props) {
                     }
                 </List>
             </Grid>
-        </div >
+        </Grid>
+
     );
 }
 const mapStateToProps = (state) => {

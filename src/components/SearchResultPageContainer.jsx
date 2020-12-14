@@ -32,14 +32,16 @@ function SearchResultPageContainer(props) {
     const result = props.search.result;
 
     return (
-        <div>
-            <Typography gutterBottom variant="h5" component="h2">
-                Search Results
+        <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+            <Grid item>
+                <Typography gutterBottom variant="h5" component="h2">
+                    Search Results
             </Typography>
-            <Pagination
-                count={pages}
-                page={page} onChange={handleChange} />
-            <Grid container spacing={1} justify={'space-evenly'}>
+                <Pagination
+                    count={pages}
+                    page={page} onChange={handleChange} />
+            </Grid>
+            <Grid item>
                 <List className={classes.root}>
                     {!result.length ?
                         <div>Loading...</div>
@@ -49,10 +51,11 @@ function SearchResultPageContainer(props) {
                         )
                     }
                 </List>
+
             </Grid>
 
+        </Grid>
 
-        </div>
     )
 }
 const mapStateToProps = (state) => {

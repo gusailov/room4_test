@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        width: 400,
+
     },
     input: {
         marginLeft: theme.spacing(1),
@@ -25,10 +25,7 @@ const useStyles = makeStyles((theme) => ({
     iconButton: {
         padding: 10,
     },
-    divider: {
-        height: 28,
-        margin: 4,
-    },
+
 }));
 function SearchPage(props) {
     const [value, setValue] = useState("");

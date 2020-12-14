@@ -3,7 +3,7 @@ import * as axios from "axios";
 const instance = axios.create({
   baseURL: "http://ws.audioscrobbler.com/2.0/",
   params: {
-    api_key: process.env.REACT_APP_LAST_FM_API_KEY,
+    api_key: "26d44d949aef2ed24c76ad6056fa10d7",
     format: "json",
   },
 });

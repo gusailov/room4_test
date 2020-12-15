@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,11 +14,12 @@ import Typography from '@material-ui/core/Typography';
 
 
 function ArtistPage(props) {
-    const location = useLocation()
+    const params = useParams()
+    const getArtistInfo = props.getArtistInfo
     useEffect(() => {
-        props.getArtistInfo(location.state.artistName)
+        getArtistInfo(params.artistName)
 
-    }, [props, location])
+    }, [getArtistInfo, params])
     const artist = props.artist.artist
 
 

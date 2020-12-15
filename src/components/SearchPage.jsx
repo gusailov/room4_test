@@ -32,7 +32,7 @@ function SearchPage(props) {
     const handleChange = ({ target }) => setValue(target.value);
 
     const classes = useStyles();
-    let history = useHistory();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault()

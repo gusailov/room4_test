@@ -23,7 +23,7 @@ function MainPageListItem(props) {
                                 </Typography>
                             }
                                 secondary={
-                                    <NavLink to={{ pathname: `/artist/${artistName}`, state: { artistName } }}>
+                                    <NavLink to={{ pathname: `/artist/${artistName}` }}>
                                         {artistName}
                                     </NavLink>
                                 }

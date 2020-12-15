@@ -25,10 +25,11 @@ function SearchResultPageContainer(props) {
         setPage(value);
     };
     const pages = Number(props.search.pages)
+    const getSearchResult = props.getSearchResult
     useEffect(() => {
-        props.getSearchResult(params.value, page)
+        getSearchResult(params.value, page)
 
-    }, [page])
+    }, [getSearchResult, page, params])
     const result = props.search.result;
 
     return (

@@ -23,7 +23,7 @@ export const artistPageAPI = {
     return instance.get(`/artist/${artist_name}`);
   },
   getartisttop(artist_name) {
-    return instance.get(`/artist/${artist_name}/top?limit=10`);
+    return instance.get(`/chart/0/tracks?`);
   },
 };
 export const searchPageAPI = {

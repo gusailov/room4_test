@@ -23,6 +23,10 @@ export const getArtistInfo = (artist_name) => {
       console.log(" artistPageAPI", data);
       dispatch(setArtistInfo(data.data));
     });
+    artistPageAPI.getartisttop(artist_name).then((data) => {
+      console.log(" getartisttop API", data);
+      dispatch(setArtistInfo(data.data));
+    });
   };
 };
 

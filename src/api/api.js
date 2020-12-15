@@ -20,6 +20,9 @@ export const mainPageAPI = {
 };
 export const artistPageAPI = {
   getartistinfo(artist_name) {
+    return instance.get(`/artist/${artist_name}`);
+  },
+  getartisttop(artist_name) {
     return instance.get(`/artist/${artist_name}/top?limit=10`);
   },
 };

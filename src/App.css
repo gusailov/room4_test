@@ -41,3 +41,10 @@ a {
   text-decoration: none;
   padding: 2px 1px 0;
 }
+button:active,
+button:focus {
+  outline: none;
+}
+audio {
+  outline: none;
+}

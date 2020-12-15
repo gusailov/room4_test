@@ -1,25 +1,30 @@
 import * as axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://ws.audioscrobbler.com/2.0/",
+  baseURL: "https://deezerdevs-deezer.p.rapidapi.com",
   params: {
-    api_key: "26d44d949aef2ed24c76ad6056fa10d7",
+    limit: "10",
+
     format: "json",
+  },
+  headers: {
+    "x-rapidapi-key": "2d8bcfc378mshd0a8c0076754a4dp18578ajsnbf56719ff2ce",
+    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
   },
 });
 
 export const mainPageAPI = {
   gettoptracks(page) {
-    return instance.get(`?method=chart.gettoptracks&page=${page}`);
+    return axios.get(`https://api.deezer.com/chart/0/tracks?index=30&limit=10`);
   },
 };
 export const artistPageAPI = {
   getartistinfo(artist_name) {
-    return instance.get(`?method=artist.getinfo&artist=${artist_name}`);
+    return instance.get(`/artist/${artist_name}/top?limit=10`);
   },
 };
 export const searchPageAPI = {
   searchtrack(track, page) {
-    return instance.get(`?method=track.search&track=${track}&page=${page}`);
+    return instance.get(`/search?q=${track}&index=${page}`);
   },
 };

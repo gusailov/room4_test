@@ -20,7 +20,8 @@ export const setArtistInfo = (artist) => ({ type: SET_ARTIST, artist });
 export const getArtistInfo = (artist_name) => {
   return (dispatch) => {
     artistPageAPI.getartistinfo(artist_name).then((data) => {
-      dispatch(setArtistInfo(data.data.artist));
+      console.log(" artistPageAPI", data);
+      dispatch(setArtistInfo(data.data));
     });
   };
 };

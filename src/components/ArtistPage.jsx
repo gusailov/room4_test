@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,16 +14,20 @@ import Typography from '@material-ui/core/Typography';
 
 
 function ArtistPage(props) {
+
     const location = useLocation()
+    const params = useParams()
+    console.log('ArtistPage ', params.artistName);
+
     useEffect(() => {
-        props.getArtistInfo(location.state.artistName)
+        props.getArtistInfo(params.artistName)
 
-    }, [props, location])
+    }, [])
     const artist = props.artist.artist
-
+    console.log('ArtistPage artist', artist);
 
     return (<div>
-        {artist.length === 0 ?
+        {!artist ?
             <div>Loading...</div> :
             <div>
 
@@ -33,25 +37,18 @@ function ArtistPage(props) {
                             component="img"
                             alt={artist.name}
                             height="140"
-                            image={artist.image[4]['#text']}
+                            image={artist.picture_xl}
                             title={artist.name}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
                                 {artist.name}
                             </Typography>
-                            <Typography variant="body2" color="textSecondary" component="div" dangerouslySetInnerHTML={{ __html: artist.bio.summary }} />
+
 
                         </CardContent>
                     </CardActionArea>
-                    <CardActions>
-                        {!artist.tags.tag.length ?
-                            <div>Loading...</div> :
-                            artist.tags.tag.map((tag) =>
-                                <Button size="small" color="primary" key={tag.url} href={tag.url}> {tag.name} </Button>
-                            )
-                        }
-                    </CardActions>
+
                 </Card>
             </div>
 

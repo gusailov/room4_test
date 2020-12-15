@@ -24,12 +24,10 @@ export const setPages = (pages) => ({ type: SET_PAGES, pages });
 export const getSearchResult = (track, page) => {
   return (dispatch) => {
     searchPageAPI.searchtrack(track, page).then((data) => {
-      const pages = Number(
-        data.data.results["opensearch:totalResults"] /
-          data.data.results["opensearch:itemsPerPage"]
-      );
-      dispatch(setResult(data.data.results.trackmatches.track));
-      dispatch(setPages(Math.floor(pages) + 1));
+      console.log("searchPageAPI", data);
+
+      dispatch(setResult(data.data));
+      dispatch(setPages(10));
     });
   };
 };

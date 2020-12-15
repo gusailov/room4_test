@@ -2,9 +2,13 @@ import React from 'react';
 import { IconButton, Typography, ListItemText, ListItem, Paper, Grid } from '@material-ui/core';
 import Album from '@material-ui/icons/Album';
 
-
+import { NavLink } from "react-router-dom";
 
 function SearchResultItem(props) {
+    // console.log('SearchResultItem', props);
+    const artist_id = props.artist_id
+    const artistName = props.artist
+    console.log('SearchResultItem', artist_id);
     return (
         <div>
             <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
@@ -19,7 +23,9 @@ function SearchResultItem(props) {
                             }
                                 secondary={
                                     <Typography color="textSecondary" component={'p'}>
-                                        artist: {props.artist}
+                                        artist: <NavLink to={{ pathname: `/artist/${artist_id}`, state: { artist_id } }}>
+                                            {props.artist}
+                                        </NavLink>
                                     </Typography>
                                 }
                             />
@@ -27,10 +33,12 @@ function SearchResultItem(props) {
                                 <Album />
                             </IconButton>
                         </ListItem>
-
+                        <audio
+                            controls
+                            src={props.mp3}>
+                        </audio>
                     </Paper>
                 </Grid>
-
             </Grid>
         </div>
     );

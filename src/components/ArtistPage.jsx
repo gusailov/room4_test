@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
 import { Card, Grid } from '@material-ui/core/';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -29,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ArtistPage(props) {
     const classes = useStyles();
-    const location = useLocation()
     const params = useParams()
     console.log('ArtistPage ', params.artistName);
     const getArtistInfo = props.getArtistInfo
@@ -52,12 +48,6 @@ function ArtistPage(props) {
                     </Typography>
                     <Card >
                         <CardActionArea href={artist.link}>
-
-
-
-
-
-
                         </CardActionArea>
 
                     </Card>

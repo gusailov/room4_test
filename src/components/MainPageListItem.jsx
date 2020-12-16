@@ -15,7 +15,7 @@ function MainPageListItem(props) {
                     <Paper >
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
-                                <Avatar alt={`${artistName} - ${props.name}`} src={props.img['#text']} title={`${artistName} - ${props.name}`} />
+                                <Avatar alt={`${artistName} - ${props.name}`} src={props.img} title={`${artistName} - ${props.name}`} />
                             </ListItemAvatar>
                             <ListItemText primary={
                                 <Typography color="textPrimary"  >

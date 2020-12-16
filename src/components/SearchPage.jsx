@@ -33,14 +33,14 @@ function SearchPage(props) {
 
     const classes = useStyles();
     let history = useHistory();
-
+    const getSearchResult = props.getSearchResult
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!value) {
             return
         }
         history.push(`/search/${value}`);
-        props.getSearchResult(value)
+        getSearchResult(value)
         // setValue(" ");
 
     }

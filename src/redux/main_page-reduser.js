@@ -25,7 +25,7 @@ export const getTopTracks = (page) => {
   return (dispatch) => {
     mainPageAPI.gettoptracks(page).then((data) => {
       console.log(data);
-      dispatch(setTracks(data.data.tracks.track));
+      dispatch(setTracks(data.data));
       dispatch(setPages(20));
     });
   };

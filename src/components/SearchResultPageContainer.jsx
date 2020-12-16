@@ -17,21 +17,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchResultPageContainer(props) {
-    console.log('SearchResultPageContainer', props.search.result.data);
+
     const params = useParams()
     const classes = useStyles();
-    const [page, setPage] = React.useState(1);
+    const [page, setPage] = React.useState(0);
     const handleChange = (event, value) => {
         setPage(value);
     };
     console.log('SearchResultPageContainer params.value', params.value);
     const pages = Number(props.search.pages)
+    const getSearchResult = props.getSearchResult
     useEffect(() => {
-        props.getSearchResult(params.value, page)
+        getSearchResult(params.value, page)
 
-    }, [page])
+    }, [getSearchResult, page, params])
     const result = props.search.result.data;
-
+    console.log('SearchResultPageContainer', result);
     return (
         <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
             <Grid item>

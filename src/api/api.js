@@ -3,8 +3,7 @@ import * as axios from "axios";
 const instance = axios.create({
   baseURL: "https://deezerdevs-deezer.p.rapidapi.com",
   params: {
-    limit: "10",
-
+    //  limit: "10",
     format: "json",
   },
   headers: {
@@ -12,10 +11,10 @@ const instance = axios.create({
     "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
   },
 });
-
+const str = "global hits 2020";
 export const mainPageAPI = {
   gettoptracks(page) {
-    return axios.get(`https://api.deezer.com/chart/0/tracks?index=30&limit=10`);
+    return instance.get(`/search/playlist?index=0&limit=10&q=${str}`);
   },
 };
 export const artistPageAPI = {

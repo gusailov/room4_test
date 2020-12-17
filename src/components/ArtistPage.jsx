@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getArtistInfo } from "../redux/artist_page-reduser";
-import { Card, Grid } from '@material-ui/core/';
+import { Card, Grid, List } from '@material-ui/core/';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import MainPageListItem from './MainPageListItem';
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,17 +28,20 @@ const useStyles = makeStyles((theme) => ({
 function ArtistPage(props) {
     const classes = useStyles();
     const params = useParams()
-    console.log('ArtistPage ', params.artistName);
+    console.log('ArtistPage props', props);
+    console.log('ArtistPage params', params.artistName);
     const getArtistInfo = props.getArtistInfo
+
     useEffect(() => {
         getArtistInfo(params.artistName)
 
     }, [getArtistInfo, params])
-    const artist = props.artist.artist
-    console.log('ArtistPage artist', artist);
+
+    const artist = props.artist
+    const tracklist = props.tracklist
 
     return (<div >
-        {!artist ?
+        {props.isFetching ?
             <div>Loading...</div> :
             <div >
                 <Grid item className={classes.background} style={{ backgroundImage: `url(${artist.picture_xl})` }}>
@@ -52,6 +56,13 @@ function ArtistPage(props) {
 
                     </Card>
                 </Grid >
+                <List className={classes.root}>
+                    {
+                        tracklist.map((track) =>
+                            < MainPageListItem key={track.id} name={track.title} artist_name={track.artist.name} artist_url={track.artist.tracklist} img={track.album.cover_medium} />
+                        )
+                    }
+                </List>
             </div >
 
         } </div >
@@ -59,7 +70,9 @@ function ArtistPage(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        artist: state.artistPage,
+        artist: state.artistPage.artist,
+        tracklist: state.artistPage.tracklist,
+        isFetching: state.artistPage.isFetching,
     };
 };
 export default connect(mapStateToProps, { getArtistInfo })(ArtistPage)

@@ -2,10 +2,12 @@ import { mainPageAPI } from "../api/api";
 
 const SET_TRACKS = "SET_TRACKS";
 const SET_PAGES = "SET_PAGES";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 const initialState = {
   tracks: [],
   pages: 10,
+  isFetching: true,
 };
 
 const mainPageReducer = (state = initialState, action) => {
@@ -14,20 +16,27 @@ const mainPageReducer = (state = initialState, action) => {
       return { ...state, tracks: action.tracks };
     case SET_PAGES:
       return { ...state, pages: action.pages };
+    case TOGGLE_IS_FETCHING: {
+      return { ...state, isFetching: action.isFetching };
+    }
     default:
       return state;
   }
 };
 export const setTracks = (tracks) => ({ type: SET_TRACKS, tracks });
 export const setPages = (pages) => ({ type: SET_PAGES, pages });
+export const toggleIsFetching = (isFetching) => ({
+  type: TOGGLE_IS_FETCHING,
+  isFetching,
+});
 
 export const getTopTracks = (page) => {
-  return (dispatch) => {
-    mainPageAPI.gettoptracks(page).then((data) => {
-      console.log(data);
-      dispatch(setTracks(data.data));
-      dispatch(setPages(20));
-    });
+  return async (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    const data = await mainPageAPI.gettoptracks(page);
+    dispatch(toggleIsFetching(false));
+    dispatch(setTracks(data.data));
+    dispatch(setPages(20));
   };
 };
 

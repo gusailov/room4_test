@@ -16,15 +16,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MainPageContainer(props) {
-
+    console.log('MainPageContainer(props', props);
     const [page, setPage] = React.useState(1);
     const getTopTracks = props.getTopTracks
     useEffect(() => {
         getTopTracks(page);
     }, [getTopTracks, page]);
     const classes = useStyles();
-    const tracks = props.mainPage.tracks.data;
-    const pages = Number(props.mainPage.pages)
+    const tracks = props.tracks;
+    const pages = Number(props.pages)
     const handleChange = (event, value) => {
         setPage(value);
     };
@@ -40,7 +40,7 @@ function MainPageContainer(props) {
             </Grid>
             <Grid item>
                 <List className={classes.root}>
-                    {!tracks ?
+                    {props.isFetching ?
                         <div>Loading...</div>
                         :
                         tracks.map((track) =>
@@ -55,7 +55,9 @@ function MainPageContainer(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        mainPage: state.mainPage,
+        tracks: state.mainPage.tracks,
+        isFetching: state.mainPage.isFetching,
+        pages: state.mainPage.pages
     };
 };
 export default connect(mapStateToProps, { getTopTracks, getArtistInfo })(MainPageContainer)

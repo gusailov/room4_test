@@ -14,19 +14,32 @@ const instance = axios.create({
 const str = "global hits 2020";
 export const mainPageAPI = {
   gettoptracks(page) {
-    return instance.get(`/search/playlist?index=0&limit=10&q=${str}`);
+    return instance
+      .get(`/search/playlist?index=0&limit=10&q=${str}`)
+      .then((response) => {
+        return response.data;
+      });
   },
 };
 export const artistPageAPI = {
   getartistinfo(artist_name) {
-    return instance.get(`/artist/${artist_name}`);
+    return instance.get(`/artist/${artist_name}`).then((response) => {
+      return response.data;
+    });
   },
   getartisttop(artist_name) {
     return instance.get(`/chart/0/tracks?`);
   },
+  getArtistTrackList(artist_id) {
+    return instance.get(`artist/${artist_id}/top?limit=50`).then((response) => {
+      return response.data;
+    });
+  },
 };
 export const searchPageAPI = {
   searchtrack(track, page) {
-    return instance.get(`/search?q=${track}&index=${page}`);
+    return instance.get(`/search?q=${track}&index=${page}`).then((response) => {
+      return response.data;
+    });
   },
 };

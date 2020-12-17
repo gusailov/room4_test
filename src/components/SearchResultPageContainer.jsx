@@ -17,22 +17,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchResultPageContainer(props) {
-
+    console.log('SearchResultPageContainer', props);
     const params = useParams()
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const handleChange = (event, value) => {
         setPage(value);
     };
-    console.log('SearchResultPageContainer params.value', params.value);
-    const pages = Number(props.search.pages)
+    const pages = Number(props.pages)
     const getSearchResult = props.getSearchResult
     useEffect(() => {
         getSearchResult(params.value, page)
 
     }, [getSearchResult, page, params])
-    const result = props.search.result.data;
-    console.log('SearchResultPageContainer', result);
+    const result = props.result;
+
     return (
         <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
             <Grid item>
@@ -45,7 +44,7 @@ function SearchResultPageContainer(props) {
             </Grid>
             <Grid item>
                 <List className={classes.root}>
-                    {!result ?
+                    {props.isFetching ?
                         <div>Loading...</div>
                         :
                         result.map((res) =>
@@ -62,7 +61,9 @@ function SearchResultPageContainer(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        search: state.searchPage,
+        result: state.searchPage.result,
+        pages: state.searchPage.pages,
+        isFetching: state.searchPage.isFetching,
     };
 };
 export default connect(mapStateToProps, { getSearchResult })(SearchResultPageContainer)

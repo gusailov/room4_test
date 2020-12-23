@@ -8,7 +8,7 @@ function SearchResultItem(props) {
     // console.log('SearchResultItem', props);
     const artist_id = props.artist_id
     const artistName = props.artist
-    console.log('SearchResultItem', artist_id);
+
     return (
         <div>
             <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>

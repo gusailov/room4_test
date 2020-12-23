@@ -25,7 +25,7 @@ function App(props) {
               <Route path="/artist/:artistName?">
                 <ArtistPage />
               </Route>
-              <Route path="/search/:value">
+              <Route path="/search/:value?">
                 <SearchResultPageContainer />
               </Route>
               <Route path="/">

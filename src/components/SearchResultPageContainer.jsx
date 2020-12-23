@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { getSearchResult } from "../redux/search_page-reduser";
 import { Grid, List, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchResultItem from './SearchResultItem'
 import Pagination from '@material-ui/lab/Pagination';
+import * as queryString from 'querystring'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
 function SearchResultPageContainer(props) {
     console.log('SearchResultPageContainer', props);
     const params = useParams()
+    const location = useLocation()
+    console.log('params', params);
+    console.log('location', queryString.parse(location.search.substr(1)));
+
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const handleChange = (event, value) => {

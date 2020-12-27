@@ -11,11 +11,12 @@ const instance = axios.create({
     "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
   },
 });
-const str = "global hits 2020";
+
 export const mainPageAPI = {
-  gettoptracks(page) {
+  gettoptracks(querry, index, limit) {
+    console.log("mainPageAPI", index);
     return instance
-      .get(`/search/playlist?index=0&limit=10&q=${str}`)
+      .get(`/search/playlist?index=${index}&limit=${limit}&q=${querry}`)
       .then((response) => {
         return response.data;
       });

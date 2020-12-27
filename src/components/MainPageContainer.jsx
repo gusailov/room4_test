@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Typography, List } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { getTopTracks } from "../redux/main_page-reduser";
-import { getArtistInfo } from "../redux/artist_page-reduser";
 import MainPageListItem from './MainPageListItem';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -15,16 +14,22 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function MainPageContainer(props) {
-    console.log('MainPageContainer(props', props);
-    const [page, setPage] = React.useState(1);
-    const getTopTracks = props.getTopTracks
-    useEffect(() => {
-        getTopTracks(page);
-    }, [getTopTracks, page]);
+export function MainPageContainer() {
+
+    const tracks = useSelector(state => state.mainPage.tracks);
+    const isFetching = useSelector(state => state.mainPage.isFetching)
+    const mainPage = useSelector(state => state.mainPage)
+    const pages = Number(useSelector(state => state.mainPage.pages))
     const classes = useStyles();
-    const tracks = props.tracks;
-    const pages = Number(props.pages)
+    const dispatch = useDispatch()
+    const [page, setPage] = React.useState(1);
+    console.log('mainPage', mainPage);
+    useEffect(() => {
+        const querry = 'new'
+        dispatch(getTopTracks(querry, page));
+    }, [dispatch, page]);
+
+
     const handleChange = (event, value) => {
         setPage(value);
     };
@@ -40,7 +45,7 @@ function MainPageContainer(props) {
             </Grid>
             <Grid item>
                 <List className={classes.root}>
-                    {props.isFetching ?
+                    {isFetching ?
                         <div>Loading...</div>
                         :
                         tracks.map((track) =>
@@ -53,11 +58,3 @@ function MainPageContainer(props) {
 
     );
 }
-const mapStateToProps = (state) => {
-    return {
-        tracks: state.mainPage.tracks,
-        isFetching: state.mainPage.isFetching,
-        pages: state.mainPage.pages
-    };
-};
-export default connect(mapStateToProps, { getTopTracks, getArtistInfo })(MainPageContainer)

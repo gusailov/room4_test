@@ -30,10 +30,18 @@ export const toggleIsFetching = (isFetching) => ({
   isFetching,
 });
 
-export const getTopTracks = (page) => {
+export const getTopTracks = (querry, page) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    const data = await mainPageAPI.gettoptracks(page);
+    const limit = 10;
+    let index = 0;
+
+    const data = await mainPageAPI.gettoptracks(
+      querry,
+      page > 1 ? (index = index + 10) : index,
+      limit
+    );
+
     dispatch(toggleIsFetching(false));
     dispatch(setTracks(data.data));
     dispatch(setPages(20));

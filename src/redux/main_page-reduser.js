@@ -35,10 +35,9 @@ export const getTopTracks = (querry, page) => {
     dispatch(toggleIsFetching(true));
     const limit = 10;
     let index = 0;
-
     const data = await mainPageAPI.gettoptracks(
       querry,
-      page > 1 ? (index = index + 10) : index,
+      page > 1 ? (index = (page - 1) * limit) : index,
       limit
     );
 

@@ -6,30 +6,28 @@ import { NavLink } from "react-router-dom";
 
 export function HomePageListItem(props) {
 
+    const list = props.list
 
-    const list = props.track
-    // const lists = props.list
-    //console.log('HomePageListItem(props)', list);
     return (
         <div>
 
-            {/* <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+            <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
                 <Grid item>
                     <Paper >
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
-                                <Avatar alt={`${artistName} - ${props.name}`} src={props.img} title={`${artistName} - ${props.name}`} />
+                                <Avatar alt={list.title} src={list.picture_big} title={list.title} />
                             </ListItemAvatar>
                             <ListItemText primary={
                                 <Typography color="textPrimary"  >
-                                    {props.name}
+                                    {list.title}
                                 </Typography>
                             }
-                                secondary={
-                                    <NavLink to={{ pathname: `/artist/${artistName}`, state: { artistName } }}>
-                                        {artistName}
-                                    </NavLink>
-                                }
+                            // secondary={
+                            //     <NavLink to={{ pathname: `/artist/${artistName}`, state: { artistName } }}>
+                            //         {artistName}
+                            //     </NavLink>
+                            // }
                             />
                             <IconButton href={props.url} >
                                 <Album />
@@ -38,7 +36,7 @@ export function HomePageListItem(props) {
                     </Paper>
                 </Grid>
 
-            </Grid> */}
+            </Grid>
         </div>
     );
 }

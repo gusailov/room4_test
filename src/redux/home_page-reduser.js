@@ -15,7 +15,10 @@ const mainPageReducer = (state = initialState, action) => {
     case SET_LISTS:
       return {
         ...state,
-        lists: [...state.lists, { value: action.query, lists: action.lists }],
+        lists: [
+          ...state.lists,
+          { id: action.id, value: action.query, lists: action.lists },
+        ],
       };
     case SET_ID:
       return { ...state, tracks: action.tracks.list };
@@ -27,10 +30,11 @@ const mainPageReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const setTracks = (query, lists) => ({
+export const setTracks = (query, lists, id) => ({
   type: SET_LISTS,
   query,
   lists,
+  id,
 });
 
 export const toggleIsFetching = (isFetching) => ({
@@ -38,12 +42,12 @@ export const toggleIsFetching = (isFetching) => ({
   isFetching,
 });
 
-export const getTopTracks = (query) => {
+export const getTopTracks = (query, id) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true));
     const limit = 5;
     const data = await mainPageAPI.gettoptracks(query, limit);
-    dispatch(setTracks(query, data.data));
+    dispatch(setTracks(query, data.data, id));
     dispatch(toggleIsFetching(false));
   };
 };

@@ -2,20 +2,23 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { HomePageContainer } from './HomePageContainer';
 import { getTopTracks } from "../../redux/home_page-reduser";
+import { sortBy } from "lodash";
 
 
-const queries = ["funk", "rock", "pop"]
+const queries = [{ id: 1, value: "hits" }, { id: 2, value: "2020" }, { id: 3, value: "chart" }]
 export const HomePage = () => {
     console.log('queries ', queries);
     const isFetching = useSelector(state => state.mainPage.isFetching)
     const dispatch = useDispatch()
     const lists = useSelector(state => state.mainPage.lists);
-    const mainPage = useSelector(state => state.mainPage)
+    const listsSorted = sortBy(lists, 'id');
+
     console.log('mainPage lists', lists);
+    console.log('mainPage listsSorted', listsSorted);
 
 
     useEffect(() => {
-        queries.forEach((query, index) => dispatch(getTopTracks(query, index)))
+        queries.forEach(query => dispatch(getTopTracks(query.value, query.id)))
 
     }, [dispatch]);
 
@@ -28,7 +31,7 @@ export const HomePage = () => {
                     :
                     <div>
                         {
-                            lists.map((list) =>
+                            listsSorted.map((list) =>
                                 <HomePageContainer key={list.value} lists={list.lists} title={list.value} />)
                         }</div>
 

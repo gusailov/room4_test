@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getArtistInfo } from "../redux/artist_page-reduser";
+import { getArtistInfo } from "../../redux/artist_page-reduser";
 import { Card, Grid, List } from '@material-ui/core/';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import MainPageListItem from './MainPageListItem';
+import { HomePageListItem } from '../HomePage/HomePageListItem';
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -59,7 +59,7 @@ function ArtistPage(props) {
                 <List className={classes.root}>
                     {
                         tracklist.map((track) =>
-                            < MainPageListItem key={track.id} name={track.title} artist_name={track.artist.name} artist_url={track.artist.tracklist} img={track.album.cover_medium} />
+                            < HomePageListItem key={track.id} name={track.title} artist_name={track.artist.name} artist_url={track.artist.tracklist} img={track.album.cover_medium} />
                         )
                     }
                 </List>

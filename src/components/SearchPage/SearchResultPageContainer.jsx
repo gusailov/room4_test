@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import { getSearchResult } from "../redux/search_page-reduser";
+import { getSearchResult } from "../../redux/search_page-reduser";
 import { Grid, List, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchResultItem from './SearchResultItem'

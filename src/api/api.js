@@ -3,7 +3,6 @@ import * as axios from "axios";
 const instance = axios.create({
   baseURL: "https://deezerdevs-deezer.p.rapidapi.com",
   params: {
-    //  limit: "10",
     format: "json",
   },
   headers: {
@@ -14,7 +13,6 @@ const instance = axios.create({
 
 export const mainPageAPI = {
   gettoptracks(querry, index, limit) {
-    console.log("mainPageAPI", index);
     return instance
       .get(`/search/playlist?index=${index}&limit=${limit}&q=${querry}`)
       .then((response) => {

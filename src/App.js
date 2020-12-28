@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Grid } from "@material-ui/core";
-import ArtistPage from "./components/ArtistPage";
-import { MainPageContainer } from "./components/MainPageContainer";
-import SearchPage from "./components/SearchPage";
-import SearchResultPageContainer from "./components/SearchResultPageContainer";
+import ArtistPage from "./components/ArtistPage/ArtistPage";
+import { HomePage } from "./components/HomePage/HomePage";
+import SearchPage from "./components/SearchPage/SearchPage";
+import SearchResultPageContainer from "./components/SearchPage/SearchResultPageContainer";
 
 function App(props) {
   return (
@@ -29,7 +29,7 @@ function App(props) {
                 <SearchResultPageContainer />
               </Route>
               <Route path="/">
-                <MainPageContainer />
+                <HomePage />
               </Route>
             </Switch>
           </Grid>

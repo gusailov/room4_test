@@ -4,7 +4,7 @@ import Album from '@material-ui/icons/Album';
 import { NavLink } from "react-router-dom";
 
 
-function MainPageListItem(props) {
+export function HomePageListItem(props) {
 
     const artistName = props.artist_name
 
@@ -40,4 +40,3 @@ function MainPageListItem(props) {
     );
 }
 
-export default MainPageListItem;

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Typography, List } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { getTopTracks } from "../redux/main_page-reduser";
-import MainPageListItem from './MainPageListItem';
+import { getTopTracks } from "../../redux/main_page-reduser";
+import { HomePageListItem } from './HomePageListItem';
 import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,22 +14,22 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export function MainPageContainer() {
+export const HomePageContainer = (props) => {
 
-    const tracks = useSelector(state => state.mainPage.tracks);
+
     const isFetching = useSelector(state => state.mainPage.isFetching)
     const mainPage = useSelector(state => state.mainPage)
     const pages = Number(useSelector(state => state.mainPage.pages))
     const classes = useStyles();
     const dispatch = useDispatch()
     const [page, setPage] = React.useState(1);
-    console.log('mainPage', mainPage);
+    const querry = props.title
     useEffect(() => {
-        const querry = 'new'
+        console.log('querry', querry);
         dispatch(getTopTracks(querry, page));
-    }, [dispatch, page]);
-
-
+    }, [dispatch, page, querry]);
+    console.log('mainPage', mainPage);
+    const tracks = useSelector(state => state.mainPage.tracks);
     const handleChange = (event, value) => {
         setPage(value);
     };
@@ -39,8 +39,8 @@ export function MainPageContainer() {
         <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
             <Grid item>
                 <Typography gutterBottom variant="h5" component="h2">
-                    Best Tracks
-            </Typography>
+                    {props.title}
+                </Typography>
                 <Pagination count={pages} page={page} onChange={handleChange} />
             </Grid>
             <Grid item>
@@ -49,7 +49,7 @@ export function MainPageContainer() {
                         <div>Loading...</div>
                         :
                         tracks.map((track) =>
-                            < MainPageListItem key={track.id} name={track.title} artist_name={track.user.name} artist_url={track.user.tracklist} img={track.picture_small} />
+                            < HomePageListItem key={track.id} name={track.title} artist_name={track.user.name} artist_url={track.user.tracklist} img={track.picture_small} />
                         )
                     }
                 </List>

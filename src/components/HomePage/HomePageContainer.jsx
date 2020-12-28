@@ -19,7 +19,7 @@ export const HomePageContainer = (props) => {
 
     const isFetching = useSelector(state => state.mainPage.isFetching)
     const mainPage = useSelector(state => state.mainPage)
-
+    // console.log('mainPage ', mainPage);
     const classes = useStyles();
     const dispatch = useDispatch()
 
@@ -31,13 +31,17 @@ export const HomePageContainer = (props) => {
     }, [dispatch, querry, id]);
 
     const tracks = useSelector(state => state.mainPage.tracks.slice(1));
-    //console.log('mainPage tracks', tracks);
+    console.log('mainPage tracks', tracks);
 
 
     return (
 
         <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
             {isFetching ?
+                <div>Loading...</div>
+                :
+                tracks.map((track) => <div>{track.value}+{track.id}</div>)}
+            {/* {isFetching ?
                 <div>Loading...</div>
                 :
                 tracks.map((track) =>
@@ -57,7 +61,7 @@ export const HomePageContainer = (props) => {
                             </List>
                         </Grid>
                     </>
-                )}
+                )} */}
         </Grid>
 
     );

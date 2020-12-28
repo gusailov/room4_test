@@ -1,25 +1,12 @@
 import React from 'react';
 import { HomePageContainer } from './HomePageContainer';
-import { generate as id } from "shortid";
+import { queries } from "./queries";
+
 
 export const HomePage = () => {
 
-    const queries = [
-        {
-            id: id(),
-            value: 'funk',
-        },
-        {
-            id: id(),
-            value: 'rock',
-        },
-        {
-            id: id(),
-            value: 'pop',
-        },
 
-    ]
-    console.log('queries', queries);
+    console.log('HomePage queries', queries);
     return (
         <>
             { queries.map((querie) =>

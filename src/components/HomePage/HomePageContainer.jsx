@@ -24,13 +24,18 @@ export const HomePageContainer = (props) => {
     const dispatch = useDispatch()
 
     const querry = props.title
+    const id = props.id
     useEffect(() => {
-        console.log('querry', querry);
-        dispatch(getTopTracks(querry));
-    }, [dispatch, querry]);
-    console.log('mainPage', mainPage);
-    const tracks = useSelector(state => state.mainPage.tracks);
+        console.log('querry id', id);
+        dispatch(getTopTracks(querry, id));
+    }, [dispatch, querry, id]);
 
+    const tracks = useSelector(state => state.mainPage.tracks.slice(1));
+    console.log('mainPage tracks', tracks);
+    const lists = tracks.map((track) => track.list)
+    const list = lists.map((list) => list)
+    console.log('mainPage lists', lists);
+    // console.log('mainPage list', list);
 
     return (
 
@@ -43,13 +48,13 @@ export const HomePageContainer = (props) => {
             </Grid>
             <Grid item>
                 <List className={classes.root}>
-                    {isFetching ?
+                    {/* {isFetching && (lists.length !== 0) ?
                         <div>Loading...</div>
                         :
-                        tracks.map((track) =>
+                        lists.map((track) =>
                             < HomePageListItem key={track.id} name={track.title} artist_name={track.user.name} artist_url={track.user.tracklist} img={track.picture_small} />
                         )
-                    }
+                    } */}
                 </List>
             </Grid>
         </Grid>

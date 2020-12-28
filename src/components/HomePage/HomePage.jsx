@@ -13,13 +13,17 @@ export const HomePage = () => {
             id: id(),
             value: 'rock',
         },
+        {
+            id: id(),
+            value: 'pop',
+        },
 
     ]
     console.log(queries);
     return (
         <>
             { queries.map((querie) =>
-                <HomePageContainer key={querie.id} title={querie.value} />)}
+                <HomePageContainer key={querie.id} id={querie.id} title={querie.value} />)}
         </>
 
     )

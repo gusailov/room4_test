@@ -12,9 +12,9 @@ const instance = axios.create({
 });
 
 export const mainPageAPI = {
-  gettoptracks(querry, index, limit) {
+  gettoptracks(querry, limit) {
     return instance
-      .get(`/search/playlist?index=${index}&limit=${limit}&q=${querry}`)
+      .get(`/search/playlist?index=0&limit=${limit}&q=${querry}`)
       .then((response) => {
         return response.data;
       });

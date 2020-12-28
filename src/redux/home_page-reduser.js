@@ -9,6 +9,7 @@ const initialState = {
   tracks: [
     {
       id: "",
+      value: "",
       list: [],
     },
   ],
@@ -21,7 +22,10 @@ const mainPageReducer = (state = initialState, action) => {
     case SET_TRACKS:
       return {
         ...state,
-        tracks: [...state.tracks, { id: action.id, list: action.tracks }],
+        tracks: [
+          ...state.tracks,
+          { id: action.id, value: action.query, list: action.tracks },
+        ],
       };
     case SET_ID:
       return { ...state, tracks: action.tracks.list };
@@ -34,7 +38,12 @@ const mainPageReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const setTracks = (tracks, id) => ({ type: SET_TRACKS, tracks, id });
+export const setTracks = (id, query, tracks) => ({
+  type: SET_TRACKS,
+  id,
+  query,
+  tracks,
+});
 export const setId = (id) => ({ type: SET_ID, id });
 export const setPages = (pages) => ({ type: SET_PAGES, pages });
 export const toggleIsFetching = (isFetching) => ({
@@ -42,16 +51,14 @@ export const toggleIsFetching = (isFetching) => ({
   isFetching,
 });
 
-export const getTopTracks = (querry, id) => {
+export const getTopTracks = (query, id) => {
   return async (dispatch) => {
-    console.log("setId(id)", id);
-    //dispatch(setId(id));
     dispatch(toggleIsFetching(true));
     const limit = 5;
-    const data = await mainPageAPI.gettoptracks(querry, limit);
-    dispatch(toggleIsFetching(false));
-    dispatch(setTracks(data.data, id));
+    const data = await mainPageAPI.gettoptracks(query, limit);
+    dispatch(setTracks(id, query, data.data));
     dispatch(setPages(data.total / limit));
+    dispatch(toggleIsFetching(false));
   };
 };
 

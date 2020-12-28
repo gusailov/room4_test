@@ -6,11 +6,14 @@ import { NavLink } from "react-router-dom";
 
 export function HomePageListItem(props) {
 
-    const artistName = props.artist_name
 
+    const list = props.track
+    // const lists = props.list
+    //console.log('HomePageListItem(props)', list);
     return (
         <div>
-            <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+
+            {/* <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
                 <Grid item>
                     <Paper >
                         <ListItem alignItems="flex-start">
@@ -28,14 +31,14 @@ export function HomePageListItem(props) {
                                     </NavLink>
                                 }
                             />
-                            <IconButton href={props.artist_url} >
+                            <IconButton href={props.url} >
                                 <Album />
                             </IconButton>
                         </ListItem>
                     </Paper>
                 </Grid>
 
-            </Grid>
+            </Grid> */}
         </div>
     );
 }

@@ -26,37 +26,38 @@ export const HomePageContainer = (props) => {
     const querry = props.title
     const id = props.id
     useEffect(() => {
-        console.log('querry id', id);
+        // console.log('querry id', id);
         dispatch(getTopTracks(querry, id));
     }, [dispatch, querry, id]);
 
     const tracks = useSelector(state => state.mainPage.tracks.slice(1));
-    console.log('mainPage tracks', tracks);
-    const lists = tracks.map((track) => track.list)
-    const list = lists.map((list) => list)
-    console.log('mainPage lists', lists);
-    // console.log('mainPage list', list);
+    //console.log('mainPage tracks', tracks);
+
 
     return (
 
         <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
-            <Grid item>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {props.title}
-                </Typography>
+            {isFetching ?
+                <div>Loading...</div>
+                :
+                tracks.map((track) =>
+                    <>
+                        <Grid item>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {track.value}
+                            </Typography>
 
-            </Grid>
-            <Grid item>
-                <List className={classes.root}>
-                    {/* {isFetching && (lists.length !== 0) ?
-                        <div>Loading...</div>
-                        :
-                        lists.map((track) =>
-                            < HomePageListItem key={track.id} name={track.title} artist_name={track.user.name} artist_url={track.user.tracklist} img={track.picture_small} />
-                        )
-                    } */}
-                </List>
-            </Grid>
+                        </Grid>
+                        <Grid item>
+                            <List className={classes.root}>
+
+                                < HomePageListItem key={track.id} id={track.id} track={track} />
+
+
+                            </List>
+                        </Grid>
+                    </>
+                )}
         </Grid>
 
     );

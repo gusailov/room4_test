@@ -19,7 +19,7 @@ export const HomePage = () => {
         },
 
     ]
-    console.log(queries);
+    console.log('queries', queries);
     return (
         <>
             { queries.map((querie) =>

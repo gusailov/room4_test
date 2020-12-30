@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '100%',
+        //  height: '35vh',
     },
     indicator: {
         opacity: 0,
@@ -19,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'red',
     },
     sliderrrr: {
-        //  display: 'flex',
-        //  alignItems: 'center'
+        display: 'flex',
+        alignItems: 'center'
 
     }
 }));
@@ -74,22 +75,21 @@ export const HomePageContainer = (props) => {
     return (
 
         <div className={classes.root}>
-            <Paper elevation={2} style={{ padding: '1rem' }}>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {title}
-                </Typography>
-                <Slider {...settings}>
+
+            <Typography gutterBottom variant="h5" component="h2">
+                {title}
+            </Typography>
+            <Slider {...settings}>
 
 
-                    {lists.map((list) =>
-                        < HomePageListItem key={list.id} list={list} />
-                    )}
+                {lists.map((list) =>
+                    < HomePageListItem key={list.id} list={list} />
+                )}
 
 
-                </Slider>
-                {/* <Slider {...settings}>
-                </Slider> */}
-            </Paper>
+            </Slider>
+
+
         </div >
 
     );

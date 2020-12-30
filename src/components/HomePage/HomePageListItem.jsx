@@ -13,8 +13,8 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
-        height: '33vh',
+        //maxWidth: 345,
+        height: '100%',
     },
     media: {
         height: 140,
@@ -26,40 +26,40 @@ export function HomePageListItem(props) {
     const list = props.list
     console.log('HomePageListItem list', list);
     return (
-
-        <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
-            <div className={classes.root}>
-                <Paper >
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                                className={classes.media}
-                                image={list.picture_big}
-                                title={list.title}
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {list.title}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {list.title}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
+        <Grid item xs={8}>
+            <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+                <div className={classes.root}>
+                    <Paper >
+                        <Card className={classes.root}>
+                            <CardActionArea>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={list.picture_big}
+                                    title={list.title}
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {list.title}
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {list.title}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                    Share
         </Button>
-                            <Button size="small" color="primary">
-                                Learn More
+                                <Button size="small" color="primary">
+                                    Learn More
         </Button>
-                        </CardActions>
-                    </Card>
-                </Paper>
-            </div>
-        </Grid >
+                            </CardActions>
+                        </Card>
+                    </Paper>
+                </div>
+            </Grid >
 
-
+        </Grid>
     );
 }
 

@@ -1,43 +1,96 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Typography, List } from '@material-ui/core';
+import { Grid, Typography, List, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Slider from "react-slick";
 import { HomePageListItem } from './HomePageListItem';
+import { SampleNextArrow, SamplePrevArrow } from "../assets/Arrows";
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        flexGrow: 1,
         width: '100%',
-        backgroundColor: theme.palette.background.paper,
     },
+    indicator: {
+        opacity: 0,
+    },
+    disabled: {
+        color: 'red',
+    },
+    sliderrrr: {
+        //  display: 'flex',
+        //  alignItems: 'center'
 
+    }
 }));
 
 export const HomePageContainer = (props) => {
     const classes = useStyles();
     const { lists, title } = props
-
+    const settings = {
+        infinite: false,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        className: classes.sliderrrr,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 6,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 830,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    arrows: false,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    arrows: false,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    arrows: false,
+                }
+            }
+        ]
+    };
     return (
 
-        <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
-            <Grid item>
+        <div className={classes.root}>
+            <Paper elevation={2} style={{ padding: '1rem' }}>
                 <Typography gutterBottom variant="h5" component="h2">
                     {title}
                 </Typography>
+                <Slider {...settings}>
 
-            </Grid>
-            <Grid item>
-                <List className={classes.root}>
-                    {
-                        lists.map((list) =>
-                            < HomePageListItem key={list.id} list={list} />)
 
-                    }
-                </List>
-            </Grid>
+                    {lists.map((list) =>
+                        < HomePageListItem key={list.id} list={list} />
+                    )}
 
-        </Grid>
+
+                </Slider>
+                {/* <Slider {...settings}>
+                </Slider> */}
+            </Paper>
+        </div >
 
     );
 }

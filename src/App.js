@@ -20,7 +20,7 @@ function App(props) {
           <Grid item>
             <SearchPage />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <Switch>
               <Route path="/artist/:artistName?">
                 <ArtistPage />

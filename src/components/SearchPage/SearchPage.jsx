@@ -50,7 +50,7 @@ function SearchPage(props) {
     return (
         <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
-                <NavLink to={'/ '}>
+                <NavLink to={'/'}>
                     <Home />
                 </NavLink>
             </IconButton>

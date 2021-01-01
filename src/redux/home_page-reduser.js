@@ -13,12 +13,14 @@ const initialState = {
 const mainPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LISTS:
+      let newList = {
+        id: action.id,
+        value: action.query,
+        lists: action.lists,
+      };
       return {
         ...state,
-        lists: [
-          ...state.lists,
-          { id: action.id, value: action.query, lists: action.lists },
-        ],
+        lists: [...state.lists, newList],
       };
     case SET_ID:
       return { ...state, tracks: action.tracks.list };

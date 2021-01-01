@@ -57,11 +57,11 @@ function ArtistPage(props) {
                     </Card>
                 </Grid >
                 <List className={classes.root}>
-                    {
+                    {/* {
                         tracklist.map((track) =>
                             < HomePageListItem key={track.id} name={track.title} artist_name={track.artist.name} artist_url={track.artist.tracklist} img={track.album.cover_medium} />
                         )
-                    }
+                    } */}
                 </List>
             </div >
 

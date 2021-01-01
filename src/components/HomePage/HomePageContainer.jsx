@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         //  height: '35vh',
     },
+    container: {
+
+        //   height: '35vh',
+    },
     indicator: {
         opacity: 0,
     },
@@ -33,7 +37,7 @@ export const HomePageContainer = (props) => {
         infinite: false,
         speed: 500,
         slidesToShow: 5,
-        slidesToScroll: 1,
+        slidesToScroll: 5,
         initialSlide: 0,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
@@ -79,15 +83,15 @@ export const HomePageContainer = (props) => {
             <Typography gutterBottom variant="h5" component="h2">
                 {title}
             </Typography>
-            <Slider {...settings}>
+            <div className={classes.container}>
+                <Slider {...settings}>
 
+                    {lists.map((list) =>
+                        < HomePageListItem key={list.id} list={list} />
+                    )}
 
-                {lists.map((list) =>
-                    < HomePageListItem key={list.id} list={list} />
-                )}
-
-
-            </Slider>
+                </Slider>
+            </div>
 
 
         </div >

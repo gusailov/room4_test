@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getArtistInfo } from "../../redux/artist_page-reduser";
+import { getArtistInfo } from "../../redux/artist_page-reducer";
 import { Card, Grid, List } from '@material-ui/core/';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { HomePageListItem } from '../HomePage/HomePageListItem';

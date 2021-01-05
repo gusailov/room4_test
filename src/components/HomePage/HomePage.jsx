@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { HomePageContainer } from './HomePageContainer';
-import { getTopTracks } from "../../redux/home_page-reduser";
+import { getTopTracks } from "../../redux/home_page-reducer";
 import { sortBy, keyBy, forEachRight, includes } from "lodash";
 
 

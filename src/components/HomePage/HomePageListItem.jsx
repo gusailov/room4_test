@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     },
 });
 
-export function HomePageListItem(props) {
+export const HomePageListItem = (props) => {
     const classes = useStyles();
     const list = props.list
 

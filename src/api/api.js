@@ -20,6 +20,14 @@ export const mainPageAPI = {
       });
   },
 };
+export const playlistPageAPI = {
+  getPlaylist(playlist_id) {
+    return instance.get(`/playlist/${playlist_id}`).then((response) => {
+      return response.data;
+    });
+  },
+};
+
 export const artistPageAPI = {
   getartistinfo(artist_name) {
     return instance.get(`/artist/${artist_name}`).then((response) => {

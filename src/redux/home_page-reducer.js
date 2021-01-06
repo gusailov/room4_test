@@ -2,7 +2,6 @@ import { mainPageAPI } from "../api/api";
 
 const SET_LISTS = "SET_LISTS";
 const SET_ID = "SET_ID";
-
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 const initialState = {

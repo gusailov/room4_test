@@ -1,21 +1,21 @@
-import { artistPageAPI } from "../api/api";
+import { playlistPageAPI } from "../api/api";
 
-const SET_ARTIST = "SET_ARTIST";
-const SET_TRACKLIST = "SET_TRACKLIST";
+const SET_PLAYLIST = "SET_PLAYLIST";
+const SET_TRACKS = "SET_TRACKS";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 const initialState = {
   playlist: {},
-  tracklist: [],
+  tracks: [],
   isFetching: true,
 };
 
-const artistPageReducer = (state = initialState, action) => {
+const playlistPageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_ARTIST:
-      return { ...state, artist: action.artist };
-    case SET_TRACKLIST:
-      return { ...state, tracklist: action.tracklist };
+    case SET_PLAYLIST:
+      return { ...state, playlist: action.playlist };
+    case SET_TRACKS:
+      return { ...state, tracks: action.tracks };
     case TOGGLE_IS_FETCHING: {
       return { ...state, isFetching: action.isFetching };
     }
@@ -23,27 +23,25 @@ const artistPageReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const setArtistInfo = (artist) => ({ type: SET_ARTIST, artist });
-export const setArtistTrackList = (tracklist) => ({
-  type: SET_TRACKLIST,
-  tracklist,
+export const setPlaylist = (playlist) => ({ type: SET_PLAYLIST, playlist });
+export const setTracks = (tracks) => ({
+  type: SET_TRACKS,
+  tracks,
 });
 export const toggleIsFetching = (isFetching) => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
 });
 
-export const getArtistInfo = (artist_name) => {
+export const getPlaylistInfo = (playlist_id) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    const data = await artistPageAPI.getartistinfo(artist_name);
-    console.log(" artistPageAPI", data);
-    dispatch(setArtistInfo(data));
-    const tracklist = await artistPageAPI.getArtistTrackList(artist_name);
-    console.log("getArtistTrackList API", tracklist.data);
-    dispatch(setArtistTrackList(tracklist.data));
+    const data = await playlistPageAPI.getPlaylist(playlist_id);
+    console.log("playlistPageAPI", data);
+    dispatch(setPlaylist(data));
+    dispatch(setTracks(data.tracks.data));
     dispatch(toggleIsFetching(false));
   };
 };
 
-export default artistPageReducer;
+export default playlistPageReducer;

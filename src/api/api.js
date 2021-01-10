@@ -49,9 +49,9 @@ export const searchPageAPI = {
       return response.data;
     });
   },
-  searchPlaylist(querry, limit) {
+  searchTrack(querry, limit) {
     return instance
-      .get(`/search/playlist?index=0&limit=${limit}&q=${querry}`)
+      .get(`/search/track?index=0&limit=${limit}&q=${querry}`)
       .then((response) => {
         return response.data;
       });
@@ -63,16 +63,16 @@ export const searchPageAPI = {
         return response.data;
       });
   },
-  searchArtist(querry, limit) {
+  searchPlaylist(querry, limit) {
     return instance
-      .get(`/search/artist?index=0&limit=${limit}&q=${querry}`)
+      .get(`/search/playlist?index=0&limit=${limit}&q=${querry}`)
       .then((response) => {
         return response.data;
       });
   },
-  searchTrack(querry, limit) {
+  searchArtist(querry, limit) {
     return instance
-      .get(`/search/track?index=0&limit=${limit}&q=${querry}`)
+      .get(`/search/artist?index=0&limit=${limit}&q=${querry}`)
       .then((response) => {
         return response.data;
       });

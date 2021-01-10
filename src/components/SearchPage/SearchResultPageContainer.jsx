@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import { connect } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { getSearchResult } from "../../redux/search_page-reducer";
-import { Grid, List, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchResultItem from './SearchResultItem'
-import Pagination from '@material-ui/lab/Pagination';
+import { TracksSearchResult } from './TracksSearchResult'
 import * as queryString from 'querystring'
+import { AlbumsSearchResult } from './AlbumsSearchResult';
+import { PlaylistsSearchResult } from './PlaylistsSearchResult';
+import { ArtistsSearchResult } from './ArtistsSearchResult';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,58 +20,39 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function SearchResultPageContainer(props) {
-    console.log('SearchResultPageContainer', props);
-    const params = useParams()
+export const SearchResultPageContainer = () => {
+    const { isFetching } = useSelector(state => state.searchPage)
+    const dispatch = useDispatch()
     const location = useLocation()
-    console.log('params', params);
-    console.log('location', queryString.parse(location.search.substr(1)));
-
+    const query = queryString.parse(location.search.substr(1)).query
+    console.log('query', queryString.parse(location.search.substr(1)));
     const classes = useStyles();
-    const [page, setPage] = React.useState(0);
-    const handleChange = (event, value) => {
-        setPage(value);
-    };
-    const pages = Number(props.pages)
-    const getSearchResult = props.getSearchResult
-    useEffect(() => {
-        getSearchResult(params.value, page)
 
-    }, [getSearchResult, page, params])
-    const result = props.result;
+
+    useEffect(() => {
+        dispatch(getSearchResult(query))
+    }, [query, dispatch])
 
     return (
-        <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
-            <Grid item>
-                <Typography gutterBottom variant="h5" component="h2">
-                    Search Results
-            </Typography>
-                <Pagination
-                    count={pages}
-                    page={page} onChange={handleChange} />
-            </Grid>
-            <Grid item>
-                <List className={classes.root}>
-                    {props.isFetching ?
-                        <div>Loading...</div>
-                        :
-                        result.map((res) =>
-                            < SearchResultItem key={res.id} url={res.link} track={res.title} mp3={res.preview} artist={res.artist.name} artist_id={res.artist.id} />
-                        )
-                    }
-                </List>
+        <div>
+            {
+                isFetching ?
+                    <div>Loading...</div>
+                    :
+                    <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+                        <Grid item>
+                            <Typography gutterBottom variant="h5" component="h2">Search Results </Typography>
+                        </Grid>
+                        <Grid item> <TracksSearchResult query={query} title={"Tracks"} /> </Grid>
+                        <Grid item> <AlbumsSearchResult query={query} title={"Albums"} /> </Grid>
+                        <Grid item> <PlaylistsSearchResult query={query} title={"Playlists"} /> </Grid>
+                        <Grid item> <ArtistsSearchResult query={query} title={"Artists"} /> </Grid>
 
-            </Grid>
 
-        </Grid>
+                    </Grid>
+
+            }</div>
+
 
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        result: state.searchPage.result,
-        pages: state.searchPage.pages,
-        isFetching: state.searchPage.isFetching,
-    };
-};
-export default connect(mapStateToProps, { getSearchResult })(SearchResultPageContainer)

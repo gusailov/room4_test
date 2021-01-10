@@ -6,30 +6,31 @@ import { NavLink } from "react-router-dom";
 const useStyles = makeStyles({
     media: {
         height: 200,
+        width: 200,
     },
 });
 
-export const HomePageListItem = (props) => {
+export const PlaylistsItem = ({ playlist }) => {
     const classes = useStyles();
-    const list = props.list
 
     return (
-        <Grid item xs={10} className={classes.root}>
+
+        <Grid item xs={2}>
             <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
                 <Grid item>
-                    <NavLink to={`/playlist/${list.id} `}>
-                        <Paper elevation={3} >
+                    <NavLink to={`/playlist/${playlist.id} `}>
+                        <Paper elevation={3} className={classes.media}>
                             <CardMedia
                                 className={classes.media}
-                                image={list.picture_big}
-                                title={list.title}
+                                image={playlist.picture_big}
+                                title={playlist.title}
                             />
                         </Paper> </NavLink>
                 </Grid >
-                <NavLink to={`/playlist/${list.id} `}> {list.title} </NavLink>
+                <NavLink to={`/playlist/${playlist.id} `}> {playlist.title} </NavLink>
             </Grid >
+        </Grid >
 
-        </Grid>
     );
 }
 

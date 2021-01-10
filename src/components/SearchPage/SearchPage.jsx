@@ -41,7 +41,7 @@ function SearchPage(props) {
         }
         history.push({
             pathname: '/search',
-            search: `term=${value}&huuu=hooo`
+            search: `query=${value}`
         });
         getSearchResult(value)
         // setValue(" ");

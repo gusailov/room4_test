@@ -37,10 +37,8 @@ export const getArtistInfo = (artist_id) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true));
     const data = await artistPageAPI.getartistinfo(artist_id);
-    console.log(" artistPageAPI", data);
-    dispatch(setArtistInfo(data));
     const tracklist = await artistPageAPI.getArtistTrackList(artist_id);
-    console.log("getArtistTrackList API", tracklist.data);
+    dispatch(setArtistInfo(data));
     dispatch(setArtistTrackList(tracklist.data));
     dispatch(toggleIsFetching(false));
   };

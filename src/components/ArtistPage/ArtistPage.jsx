@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getArtistInfo } from "../../redux/artist_page-reducer";
 import { Card, Grid, List } from '@material-ui/core/';
@@ -8,6 +8,7 @@ import { HomePageListItem } from '../HomePage/HomePageListItem';
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { PlaylistTable } from './../PlaylistPage/PlaylistTable';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,23 +26,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function ArtistPage(props) {
+export const ArtistPage = () => {
+    const { isFetching, tracklist, artist } = useSelector(state => state.artistPage)
+    const dispatch = useDispatch()
     const classes = useStyles();
     const params = useParams()
-    console.log('ArtistPage props', props);
+    console.log('ArtistPage artist', artist);
     console.log('ArtistPage params', params.artistName);
-    const getArtistInfo = props.getArtistInfo
 
     useEffect(() => {
-        getArtistInfo(params.artistId)
+        dispatch(getArtistInfo(params.artistId))
 
-    }, [getArtistInfo, params])
+    }, [params, dispatch])
 
-    const artist = props.artist
-    const tracklist = props.tracklist
+
 
     return (<div >
-        {props.isFetching ?
+        {isFetching ?
             <div>Loading...</div> :
             <div >
                 <Grid item className={classes.background} style={{ backgroundImage: `url(${artist.picture_xl})` }}>
@@ -56,24 +57,11 @@ function ArtistPage(props) {
 
                     </Card>
                 </Grid >
-                <List className={classes.root}>
-                    {/* {
-                        tracklist.map((track) =>
-                            < HomePageListItem key={track.id} name={track.title} artist_name={track.artist.name} artist_url={track.artist.tracklist} img={track.album.cover_medium} />
-                        )
-                    } */}
-                </List>
+                <PlaylistTable tracks={tracklist} />
             </div >
 
         } </div >
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        artist: state.artistPage.artist,
-        tracklist: state.artistPage.tracklist,
-        isFetching: state.artistPage.isFetching,
-    };
-};
-export default connect(mapStateToProps, { getArtistInfo })(ArtistPage)
+
 

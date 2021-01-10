@@ -2,11 +2,12 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Grid } from "@material-ui/core";
-import ArtistPage from "./components/ArtistPage/ArtistPage";
 import { HomePage } from "./components/HomePage/HomePage";
-import { PlaylistPage } from "./components/PlaylistPage/PlaylistPage";
 import SearchPage from "./components/SearchPage/SearchPage";
-import SearchResultPageContainer from "./components/SearchPage/SearchResultPageContainer";
+import { SearchResultPageContainer } from "./components/SearchPage/SearchResultPageContainer";
+import { AlbumPage } from "./components/AlbumPage/AlbumPage";
+import { PlaylistPage } from "./components/PlaylistPage/PlaylistPage";
+import { ArtistPage } from "./components/ArtistPage/ArtistPage";
 
 function App(props) {
   return (
@@ -24,9 +25,9 @@ function App(props) {
               <PlaylistPage />
             </Route>
             <Route path="/album/:albumId?">
-              <SearchResultPageContainer />
+              <AlbumPage />
             </Route>
-            <Route path="/search/:value?">
+            <Route path="/search/">
               <SearchResultPageContainer />
             </Route>
             <Route path="/">

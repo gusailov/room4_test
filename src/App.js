@@ -17,11 +17,14 @@ function App(props) {
         </Grid>
         <Grid item xs={12}>
           <Switch>
-            <Route path="/artist/:artistName?">
+            <Route path="/artist/:artistId?">
               <ArtistPage />
             </Route>
             <Route path="/playlist/:playlistId?">
               <PlaylistPage />
+            </Route>
+            <Route path="/album/:albumId?">
+              <SearchResultPageContainer />
             </Route>
             <Route path="/search/:value?">
               <SearchResultPageContainer />

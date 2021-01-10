@@ -29,8 +29,8 @@ export const playlistPageAPI = {
 };
 
 export const artistPageAPI = {
-  getartistinfo(artist_name) {
-    return instance.get(`/artist/${artist_name}`).then((response) => {
+  getartistinfo(artist_id) {
+    return instance.get(`/artist/${artist_id}`).then((response) => {
       return response.data;
     });
   },
@@ -48,5 +48,33 @@ export const searchPageAPI = {
     return instance.get(`/search?q=${track}&index=${page}`).then((response) => {
       return response.data;
     });
+  },
+  searchPlaylist(querry, limit) {
+    return instance
+      .get(`/search/playlist?index=0&limit=${limit}&q=${querry}`)
+      .then((response) => {
+        return response.data;
+      });
+  },
+  searchAlbum(querry, limit) {
+    return instance
+      .get(`/search/album?index=0&limit=${limit}&q=${querry}`)
+      .then((response) => {
+        return response.data;
+      });
+  },
+  searchArtist(querry, limit) {
+    return instance
+      .get(`/search/artist?index=0&limit=${limit}&q=${querry}`)
+      .then((response) => {
+        return response.data;
+      });
+  },
+  searchTrack(querry, limit) {
+    return instance
+      .get(`/search/track?index=0&limit=${limit}&q=${querry}`)
+      .then((response) => {
+        return response.data;
+      });
   },
 };

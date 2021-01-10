@@ -33,13 +33,13 @@ export const toggleIsFetching = (isFetching) => ({
   isFetching,
 });
 
-export const getArtistInfo = (artist_name) => {
+export const getArtistInfo = (artist_id) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    const data = await artistPageAPI.getartistinfo(artist_name);
+    const data = await artistPageAPI.getartistinfo(artist_id);
     console.log(" artistPageAPI", data);
     dispatch(setArtistInfo(data));
-    const tracklist = await artistPageAPI.getArtistTrackList(artist_name);
+    const tracklist = await artistPageAPI.getArtistTrackList(artist_id);
     console.log("getArtistTrackList API", tracklist.data);
     dispatch(setArtistTrackList(tracklist.data));
     dispatch(toggleIsFetching(false));

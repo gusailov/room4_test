@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function ArtistPage(props) {
+export const AlbumPage = (props) => {
     const classes = useStyles();
     const params = useParams()
     console.log('ArtistPage props', props);
@@ -33,7 +33,7 @@ function ArtistPage(props) {
     const getArtistInfo = props.getArtistInfo
 
     useEffect(() => {
-        getArtistInfo(params.artistId)
+        getArtistInfo(params.albumId)
 
     }, [getArtistInfo, params])
 
@@ -68,12 +68,5 @@ function ArtistPage(props) {
         } </div >
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        artist: state.artistPage.artist,
-        tracklist: state.artistPage.tracklist,
-        isFetching: state.artistPage.isFetching,
-    };
-};
-export default connect(mapStateToProps, { getArtistInfo })(ArtistPage)
+
 

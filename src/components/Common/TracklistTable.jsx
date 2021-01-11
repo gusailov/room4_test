@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { Image } from './Image';
 
 
 const useStyles = makeStyles({
@@ -36,17 +37,15 @@ export const TracklistTable = ({ tracks }) => {
                 <TableBody>
                     {tracks.map((track) => (
                         <TableRow key={track.id}>
-
                             <TableCell align="left">{track.title}</TableCell>
                             <TableCell align="left"> <NavLink to={`/artist/${track.artist.id} `}>{track.artist.name}</NavLink></TableCell>
                             <TableCell align="left"><NavLink to={`/album/${track.id} `}>
                                 <Paper className={classes.media} elevation={3} >
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={track.album.cover_medium}
+                                    <Image img={track.album.cover_medium}
                                         title={track.album.title}
+                                        size={'100%'}
+                                    // rounded={rounded}
                                     />
-
                                 </Paper>
                                 {track.album.title}
                             </NavLink></TableCell>

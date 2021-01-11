@@ -26,8 +26,6 @@ export const SearchResultPageContainer = () => {
     const location = useLocation()
     const query = queryString.parse(location.search.substr(1)).query
     console.log('query', queryString.parse(location.search.substr(1)));
-    const classes = useStyles();
-
 
     useEffect(() => {
         dispatch(getSearchResult(query))

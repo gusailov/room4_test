@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from "react-router-dom";
-import { Paper, CardMedia, Table } from '@material-ui/core';
+import { Paper, Table } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -44,7 +44,6 @@ export const TracklistTable = ({ tracks }) => {
                                     <Image img={track.album.cover_medium}
                                         title={track.album.title}
                                         size={'100%'}
-                                    // rounded={rounded}
                                     />
                                 </Paper>
                                 {track.album.title}

@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchResult } from "../../redux/search_page-reducer";
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
+import { Paper, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import Home from '@material-ui/icons/Home';
 import { NavLink, useHistory } from "react-router-dom";
@@ -56,7 +54,7 @@ export const NavBar = () => {
             </IconButton>
             <InputBase
                 className={classes.input}
-                placeholder="Search Track"
+                placeholder="Search"
                 onChange={handleChange}
                 value={value}
             />

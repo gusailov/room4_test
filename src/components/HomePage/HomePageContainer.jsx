@@ -10,11 +10,8 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '100%',
-        //height: '35vh',
     },
-    container: {
-        height: '35vh',
-    },
+
     indicator: {
         opacity: 0,
     },
@@ -24,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     sliderrrr: {
         display: 'flex',
         alignItems: 'center',
-        height: "100%",
     }
 }));
 

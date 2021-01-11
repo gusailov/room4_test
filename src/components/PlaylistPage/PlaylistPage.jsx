@@ -6,10 +6,11 @@ import { TracklistTable } from './../Common/TracklistTable';
 
 
 
-export const PlaylistPage = (props) => {
+export const PlaylistPage = () => {
     const dispatch = useDispatch()
     const params = useParams()
     const tracks = useSelector(state => state.playlistPage.tracks);
+    const playlist = useSelector(state => state.playlistPage.playlist);
     const isFetching = useSelector(state => state.playlistPage.isFetching)
 
 
@@ -18,11 +19,14 @@ export const PlaylistPage = (props) => {
 
     }, [params, dispatch])
 
-    return (<div >
-        PlaylistPage
+    return (
         <div>
-            {isFetching ? <div>Loading...</div> : <TracklistTable tracks={tracks} />}
+            {isFetching ? <div>Loading...</div> :
+                <div >
+                    {playlist.title}
+                    <TracklistTable tracks={tracks} />
+                </div>
+            }
         </div>
-
-    </div>)
+    )
 }

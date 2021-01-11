@@ -37,7 +37,6 @@ export const getPlaylistInfo = (playlist_id) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true));
     const data = await playlistPageAPI.getPlaylist(playlist_id);
-    console.log("playlistPageAPI", data);
     dispatch(setPlaylist(data));
     dispatch(setTracks(data.tracks.data));
     dispatch(toggleIsFetching(false));

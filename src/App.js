@@ -7,7 +7,7 @@ import { SearchResultPageContainer } from "./components/SearchPage/SearchResultP
 import { AlbumPage } from "./components/AlbumPage/AlbumPage";
 import { PlaylistPage } from "./components/PlaylistPage/PlaylistPage";
 import { ArtistPage } from "./components/ArtistPage/ArtistPage";
-import { NavBar } from "./components/SearchPage/NavBar";
+import { NavBar } from "./components/Common/NavBar";
 
 function App(props) {
   return (
@@ -28,6 +28,9 @@ function App(props) {
               <AlbumPage />
             </Route>
             <Route path="/search/">
+              <SearchResultPageContainer />
+            </Route>
+            <Route path="/search/:title/:query">
               <SearchResultPageContainer />
             </Route>
             <Route path="/">

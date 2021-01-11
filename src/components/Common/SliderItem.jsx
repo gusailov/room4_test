@@ -20,7 +20,7 @@ export const SliderItem = ({ item, img, title, rounded }) => {
                     <NavLink to={`/playlist/${item.id} `}>
                         <Image img={img}
                             title={title}
-                            size={'100%'}
+                            size={'200px'}
                             rounded={rounded}
                         />
                     </NavLink>

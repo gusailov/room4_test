@@ -33,19 +33,18 @@ export const SearchResultPageContainer = () => {
 
     return (
         <div>
-            {
-                isFetching ?
-                    <div>Loading...</div>
-                    :
-                    <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
-                        <Grid item>
-                            <Typography gutterBottom variant="h5" component="h2">Search Results </Typography>
-                        </Grid>
-                        <Grid item> <TracksSearchResult query={query} title={"Tracks"} /> </Grid>
-                        <Grid item> <AlbumsSearchResult query={query} title={"Albums"} /> </Grid>
-                        <Grid item> <PlaylistsSearchResult query={query} title={"Playlists"} /> </Grid>
-                        <Grid item> <ArtistsSearchResult query={query} title={"Artists"} /> </Grid>
+            {isFetching ?
+                <div>Loading...</div>
+                :
+                <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+                    <Grid item>
+                        <Typography gutterBottom variant="h5" component="h2">Search Results </Typography>
                     </Grid>
+                    <Grid item> <TracksSearchResult query={query} title={"Tracks"} /> </Grid>
+                    <Grid item> <AlbumsSearchResult query={query} title={"Albums"} /> </Grid>
+                    <Grid item> <PlaylistsSearchResult query={query} title={"Playlists"} /> </Grid>
+                    <Grid item> <ArtistsSearchResult query={query} title={"Artists"} /> </Grid>
+                </Grid>
             }</div>
 
 

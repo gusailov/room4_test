@@ -4,11 +4,9 @@ import { useParams } from "react-router-dom";
 import { getArtistInfo } from "../../redux/artist_page-reducer";
 import { Card, Grid, List } from '@material-ui/core/';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import { HomePageListItem } from '../HomePage/HomePageListItem';
-
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { PlaylistTable } from './../PlaylistPage/PlaylistTable';
+import { TracklistTable } from './../Common/TracklistTable';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,7 +55,7 @@ export const ArtistPage = () => {
 
                     </Card>
                 </Grid >
-                <PlaylistTable tracks={tracklist} />
+                <TracklistTable tracks={tracklist} />
             </div >
 
         } </div >

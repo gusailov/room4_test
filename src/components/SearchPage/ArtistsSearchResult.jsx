@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from "react-redux";
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { ArtistItem } from './ArtistItem';
 import { NavLink } from "react-router-dom";
+import { SliderItem } from './../Common/SliderItem';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +34,11 @@ export const ArtistsSearchResult = ({ query, title }) => {
     return (
 
         <div className={classes.root}>
-
             <Typography gutterBottom variant="h5" component="h2">
                 <NavLink to={`/artist/${query} `}> {title}...</NavLink>
             </Typography>
             <Grid container spacing={1} justify={'space-evenly'} direction={"row"}>
-                {artists.map((artist) => <ArtistItem key={artist.id} artist={artist} />)}
+                {artists.map((artist) => <SliderItem rounded key={artist.id} item={artist} img={artist.picture_big} title={artist.name} />)}
             </Grid >
         </div>
 

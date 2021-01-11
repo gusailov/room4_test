@@ -3,18 +3,18 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Grid } from "@material-ui/core";
 import { HomePage } from "./components/HomePage/HomePage";
-import SearchPage from "./components/SearchPage/SearchPage";
 import { SearchResultPageContainer } from "./components/SearchPage/SearchResultPageContainer";
 import { AlbumPage } from "./components/AlbumPage/AlbumPage";
 import { PlaylistPage } from "./components/PlaylistPage/PlaylistPage";
 import { ArtistPage } from "./components/ArtistPage/ArtistPage";
+import { NavBar } from "./components/SearchPage/NavBar";
 
 function App(props) {
   return (
     <div className="App">
       <Grid container direction={"column"} spacing={1} justify={"space-evenly"}>
         <Grid item>
-          <SearchPage />
+          <NavBar />
         </Grid>
         <Grid item xs={12}>
           <Switch>

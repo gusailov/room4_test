@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from "react-router-dom";
-import { Paper, Grid, CardMedia, Table } from '@material-ui/core';
+import { Paper, CardMedia, Table } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     },
 });
 
-export const PlaylistTable = ({ tracks }) => {
+export const TracklistTable = ({ tracks }) => {
     const classes = useStyles();
     return (
         <TableContainer component={Paper}>

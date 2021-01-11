@@ -47,10 +47,7 @@ export const SearchResultPageContainer = () => {
                         <Grid item> <AlbumsSearchResult query={query} title={"Albums"} /> </Grid>
                         <Grid item> <PlaylistsSearchResult query={query} title={"Playlists"} /> </Grid>
                         <Grid item> <ArtistsSearchResult query={query} title={"Artists"} /> </Grid>
-
-
                     </Grid>
-
             }</div>
 
 

@@ -2,9 +2,8 @@ import React from 'react';
 import { useSelector } from "react-redux";
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-import { PlaylistsItem } from './PlaylistItem';
 import { NavLink } from "react-router-dom";
+import { SliderItem } from './../Common/SliderItem';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,12 +34,11 @@ export const PlaylistsSearchResult = ({ query, title }) => {
     return (
 
         <div className={classes.root}>
-
             <Typography gutterBottom variant="h5" component="h2">
                 <NavLink to={`/artist/${query} `}> {title}...</NavLink>
             </Typography>
             <Grid container spacing={1} justify={'space-evenly'} direction={"row"}>
-                {playlists.map((playlist) => <PlaylistsItem key={playlist.id} playlist={playlist} />)}
+                {playlists.map((playlist) => <SliderItem key={playlist.id} item={playlist} img={playlist.picture_big} title={playlist.title} />)}
             </Grid >
         </div>
 

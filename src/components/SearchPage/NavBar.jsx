@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSearchResult } from "../../redux/search_page-reducer";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-function SearchPage(props) {
+export const NavBar = () => {
+    const dispatch = useDispatch()
     const [value, setValue] = useState("");
     const handleChange = ({ target }) => setValue(target.value);
-
     const classes = useStyles();
     let history = useHistory();
-    const getSearchResult = props.getSearchResult
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!value) {
@@ -43,10 +43,10 @@ function SearchPage(props) {
             pathname: '/search',
             search: `query=${value}`
         });
-        getSearchResult(value)
+        dispatch(getSearchResult(value))
         // setValue(" ");
-
     }
+
     return (
         <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
@@ -63,14 +63,6 @@ function SearchPage(props) {
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon />
             </IconButton>
-
-
         </Paper>
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        search: state.searchPage,
-    };
-};
-export default connect(mapStateToProps, { getSearchResult })(SearchPage)

@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { Grid, Typography, List, Paper } from '@material-ui/core';
+import React from 'react';
+import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from "react-slick";
-import { HomePageListItem } from './HomePageListItem';
 import { SampleNextArrow, SamplePrevArrow } from "../assets/Arrows";
+import { SliderItem } from './../Common/SliderItem';
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '100%',
-        //  height: '35vh',
+        //height: '35vh',
     },
     container: {
-
-        //   height: '35vh',
+        height: '35vh',
     },
     indicator: {
         opacity: 0,
@@ -25,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     },
     sliderrrr: {
         display: 'flex',
-        alignItems: 'center'
-
+        alignItems: 'center',
+        height: "100%",
     }
 }));
 
@@ -77,24 +75,17 @@ export const HomePageContainer = (props) => {
         ]
     };
     return (
-
         <div className={classes.root}>
-
             <Typography gutterBottom variant="h5" component="h2">
                 {title}
             </Typography>
-            <div className={classes.container}>
-                <Slider {...settings}>
 
-                    {lists.map((list) =>
-                        < HomePageListItem key={list.id} list={list} />
-                    )}
-
-                </Slider>
-            </div>
-
+            <Slider {...settings}>
+                {lists.map((list) =>
+                    < SliderItem key={list.id} item={list} img={list.picture_big} title={list.title} />
+                )}
+            </Slider>
 
         </div >
-
     );
 }

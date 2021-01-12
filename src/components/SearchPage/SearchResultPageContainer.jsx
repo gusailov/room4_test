@@ -22,14 +22,12 @@ export const SearchResultPageContainer = () => {
     const { isFetching } = useSelector(state => state.searchPage)
     const dispatch = useDispatch()
 
-    console.log('limit out', limit);
+
     useEffect(() => {
         setLimit(lim)
     }, [lim])
     useEffect(() => {
-        console.log('limit', limit);
         dispatch(getSearchResult(query, limit))
-
     }, [query, dispatch, limit])
     const history = useHistory();
 

@@ -17,19 +17,23 @@ export const SearchResultPageContainer = () => {
     const location = useLocation()
     const query = queryString.parse(location.search.substr(1)).query
     console.log('query', queryString.parse(location.search.substr(1)));
-    const [limit, setLimit] = useState(queryString.parse(location.search.substr(1)).limit)
+    const lim = queryString.parse(location.search.substr(1)).limit
+    const [limit, setLimit] = useState('')
     const { isFetching } = useSelector(state => state.searchPage)
     const dispatch = useDispatch()
 
     console.log('limit out', limit);
-
+    useEffect(() => {
+        setLimit(lim)
+    }, [lim])
     useEffect(() => {
         console.log('limit', limit);
         dispatch(getSearchResult(query, limit))
+
     }, [query, dispatch, limit])
     const history = useHistory();
 
-    const handleClick = (e) => {
+    const handleClick = () => {
         let l
         limit === "5" ? l = '20' : l = '5'
         console.log('handleClick', l);

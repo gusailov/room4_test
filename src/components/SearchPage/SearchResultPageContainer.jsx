@@ -1,50 +1,68 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { getSearchResult } from "../../redux/search_page-reducer";
-import { Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography, Paper, Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { TracksSearchResult } from './TracksSearchResult'
 import * as queryString from 'querystring'
 import { AlbumsSearchResult } from './AlbumsSearchResult';
 import { PlaylistsSearchResult } from './PlaylistsSearchResult';
 import { ArtistsSearchResult } from './ArtistsSearchResult';
+import { MoreResultsPage } from './MoreResultsPage';
 
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-
-        backgroundColor: theme.palette.background.paper,
-    },
-
-}));
 
 export const SearchResultPageContainer = () => {
-    const { isFetching } = useSelector(state => state.searchPage)
-    const dispatch = useDispatch()
     const location = useLocation()
     const query = queryString.parse(location.search.substr(1)).query
     console.log('query', queryString.parse(location.search.substr(1)));
+    const [limit, setLimit] = useState(queryString.parse(location.search.substr(1)).limit)
+    const { isFetching } = useSelector(state => state.searchPage)
+    const dispatch = useDispatch()
+
+    console.log('limit out', limit);
 
     useEffect(() => {
-        dispatch(getSearchResult(query))
-    }, [query, dispatch])
+        console.log('limit', limit);
+        dispatch(getSearchResult(query, limit))
+    }, [query, dispatch, limit])
+    const history = useHistory();
+
+    const handleClick = (e) => {
+        let l
+        limit === "5" ? l = '20' : l = '5'
+        console.log('handleClick', l);
+        setLimit(l)
+        history.push({
+            pathname: '/search',
+            search: `query=${query}&limit=${l}`
+        });
+    }
+
 
     return (
         <div>
             {isFetching ?
                 <div>Loading...</div>
                 :
-                <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
-                    <Grid item>
-                        <Typography gutterBottom variant="h5" component="h2">Search Results </Typography>
+                limit === "5" ?
+                    <Grid container spacing={1} justify={'space-evenly'} direction={"column"}>
+                        <Grid item>
+                            <Typography gutterBottom variant="h5" component="h2">Search Results </Typography>
+                            <Button onClick={handleClick} value={5}>More </Button >
+                        </Grid>
+                        <Grid item> <TracksSearchResult query={query} title={"Tracks"} /> </Grid>
+                        <Grid item> <AlbumsSearchResult query={query} title={"Albums"} /> </Grid>
+                        <Grid item> <PlaylistsSearchResult query={query} title={"Playlists"} /> </Grid>
+                        <Grid item> <ArtistsSearchResult query={query} title={"Artists"} /> </Grid>
                     </Grid>
-                    <Grid item> <TracksSearchResult query={query} title={"Tracks"} /> </Grid>
-                    <Grid item> <AlbumsSearchResult query={query} title={"Albums"} /> </Grid>
-                    <Grid item> <PlaylistsSearchResult query={query} title={"Playlists"} /> </Grid>
-                    <Grid item> <ArtistsSearchResult query={query} title={"Artists"} /> </Grid>
-                </Grid>
+                    : <>
+                        <Button onClick={handleClick}>Less </Button >
+
+                        <MoreResultsPage query={query} />
+
+                    </>
             }</div>
 
 

@@ -41,10 +41,11 @@ export const toggleIsFetching = (isFetching) => ({
   isFetching,
 });
 
-export const getSearchResult = (query, page) => {
+export const getSearchResult = (query, i = "5") => {
   return async (dispatch) => {
+    console.log("getSearchResult", i);
     dispatch(toggleIsFetching(true));
-    const limit = 5;
+    const limit = i;
     const tracks = await searchPageAPI.searchTrack(query, limit);
     const albums = await searchPageAPI.searchAlbum(query, limit);
     const playlists = await searchPageAPI.searchPlaylist(query, limit);

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 export const TracklistTable = ({ tracks }) => {
     const classes = useStyles();
     return (
-        <TableContainer component={Paper}>
+        <TableContainer >
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>

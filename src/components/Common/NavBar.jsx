@@ -30,7 +30,7 @@ export const NavBar = () => {
     const [value, setValue] = useState("");
     const handleChange = ({ target }) => setValue(target.value);
     const classes = useStyles();
-    let history = useHistory();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -39,7 +39,7 @@ export const NavBar = () => {
         }
         history.push({
             pathname: '/search',
-            search: `query=${value}`
+            search: `query=${value}&limit=5`
         });
         dispatch(getSearchResult(value))
         // setValue(" ");

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { HomePageContainer } from './HomePageContainer';
 import { getTopTracks } from "../../redux/home_page-reducer";
 import { sortBy, keyBy, forEachRight, includes } from "lodash";
+import queries from "./queries.json";
 
 
 
 export const HomePage = () => {
-    const queries = [{ id: 1, value: "Best of the best" }, { id: 2, value: "2021" }, { id: 3, value: "chart" }, { id: 4, value: "hits" }, { id: 5, value: "Rock" }]
+    //const queries = [{ id: 1, value: "Best of the best" }, { id: 2, value: "2021" }, { id: 3, value: "chart" }, { id: 4, value: "hits" }, { id: 5, value: "Rock" }]
     console.log('queries', queries);
     const isFetching = useSelector(state => state.mainPage.isFetching)
     const dispatch = useDispatch()
@@ -18,9 +19,9 @@ export const HomePage = () => {
 
     useEffect(() => {
         forEachRight(queries, query => {
-            if (!includes(Object.keys(keyBy(listsSorted, 'value')), query.value)) {
-                dispatch(getTopTracks(query.value, query.id))
-            }
+
+            dispatch(getTopTracks(query.value, query.id))
+
         }
         )
     }, [dispatch]);

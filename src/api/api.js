@@ -2,7 +2,7 @@ import * as axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://api.deezer.com",
-
+  headers: { "Access-Control-Allow-Origin": "*" },
   params: {
     format: "json",
     access_token: process.env.DEEZER_API_TOKEN,

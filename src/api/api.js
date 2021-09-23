@@ -1,13 +1,11 @@
 import * as axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://deezerdevs-deezer.p.rapidapi.com",
+  baseURL: "https://api.deezer.com",
+
   params: {
     format: "json",
-  },
-  headers: {
-    "x-rapidapi-key": "2d8bcfc378mshd0a8c0076754a4dp18578ajsnbf56719ff2ce",
-    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+    access_token: process.env.DEEZER_API_TOKEN,
   },
 });
 

@@ -1,8 +1,7 @@
 import * as axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://api.deezer.com",
-  headers: { "Access-Control-Allow-Origin": "*" },
+  baseURL: "/",
   params: {
     format: "json",
     access_token: process.env.DEEZER_API_TOKEN,
@@ -12,7 +11,7 @@ const instance = axios.create({
 export const mainPageAPI = {
   gettoptracks(querry, limit) {
     return instance
-      .get(`/search/playlist?index=0&limit=${limit}&q=${querry}`)
+      .get(`chart/0/playlists?index=0&limit=${limit}`)
       .then((response) => {
         return response.data;
       });

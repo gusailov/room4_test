@@ -48,6 +48,7 @@ export const getTopTracks = (query, id) => {
     dispatch(toggleIsFetching(true));
     const limit = 10;
     const data = await mainPageAPI.gettoptracks(query, limit);
+    console.log("mainPageAPI", data);
     dispatch(setTracks(query, data.data, id));
     dispatch(toggleIsFetching(false));
   };

@@ -10,15 +10,18 @@ import { PlaylistsSearchResult } from './PlaylistsSearchResult';
 import { ArtistsSearchResult } from './ArtistsSearchResult';
 import { MoreResultsPage } from './MoreResultsPage';
 
-
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 export const SearchResultPageContainer = () => {
-    const queryString = (location, param) => new URLSearchParams(location).get(param)
-    const location = useLocation()
-    const query = queryString(location.search, 'query')
-    console.log('query', queryString(location.search, 'query'));
-    console.log('limit', queryString(location.search, 'limit'));
-    const lim = queryString(location.search, 'limit')
+    let queryString = useQuery();
+
+    const query = queryString.get('query')
+    const lim = queryString.get('limit')
+    console.log('query', queryString.get('query'));
+    console.log('limit', queryString.get('limit'));
+
     const [limit, setLimit] = useState('')
     const { isFetching } = useSelector(state => state.searchPage)
     const dispatch = useDispatch()

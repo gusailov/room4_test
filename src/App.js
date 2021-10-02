@@ -30,9 +30,9 @@ function App(props) {
             <Route path="/search/">
               <SearchResultPageContainer />
             </Route>
-            <Route path="/search/:title/:query">
+            {/* <Route path="/search/:title/:query">
               <SearchResultPageContainer />
-            </Route>
+            </Route> */}
             <Route path="/">
               <HomePage />
             </Route>

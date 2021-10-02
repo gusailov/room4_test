@@ -5,7 +5,6 @@ import { getSearchResult } from "../../redux/search_page-reducer";
 import { Button, Grid, Typography, Paper, Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { TracksSearchResult } from './TracksSearchResult'
-import * as queryString from 'querystring'
 import { AlbumsSearchResult } from './AlbumsSearchResult';
 import { PlaylistsSearchResult } from './PlaylistsSearchResult';
 import { ArtistsSearchResult } from './ArtistsSearchResult';
@@ -14,10 +13,12 @@ import { MoreResultsPage } from './MoreResultsPage';
 
 
 export const SearchResultPageContainer = () => {
+    const queryString = (location, param) => new URLSearchParams(location).get(param)
     const location = useLocation()
-    const query = queryString.parse(location.search.substr(1)).query
-    console.log('query', queryString.parse(location.search.substr(1)));
-    const lim = queryString.parse(location.search.substr(1)).limit
+    const query = queryString(location.search, 'query')
+    console.log('query', queryString(location.search, 'query'));
+    console.log('limit', queryString(location.search, 'limit'));
+    const lim = queryString(location.search, 'limit')
     const [limit, setLimit] = useState('')
     const { isFetching } = useSelector(state => state.searchPage)
     const dispatch = useDispatch()
